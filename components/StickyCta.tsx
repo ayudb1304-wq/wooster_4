@@ -53,7 +53,7 @@ export function StickyCta() {
 
   return (
     <div
-      className="fixed inset-x-0 bottom-0 z-50 bg-ink-deep px-gutter pt-3 transition-transform duration-base ease-out lg:hidden"
+      className="fixed inset-x-0 bottom-0 z-50 bg-ink-deep px-gutter pt-3 transition-transform duration-(--duration-base) ease-out lg:hidden"
       style={{
         paddingBottom: "calc(0.75rem + env(safe-area-inset-bottom))",
         transform: visible ? "translateY(0)" : "translateY(100%)",

@@ -40,7 +40,7 @@ export function HeaderRule() {
   return (
     <span
       aria-hidden="true"
-      className="pointer-events-none absolute inset-x-0 bottom-0 h-px bg-paper-muted/30 transition-[opacity,background-color] duration-reveal ease-out group-data-[theme=paper]:bg-ink/15"
+      className="pointer-events-none absolute inset-x-0 bottom-0 h-px bg-paper-muted/30 transition-[opacity,background-color] duration-(--duration-reveal) ease-out group-data-[theme=paper]:bg-ink/15"
       style={{ opacity: scrolled ? 1 : 0 }}
     />
   );

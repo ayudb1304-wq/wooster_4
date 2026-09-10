@@ -10,7 +10,7 @@ import { cn } from "cn";
   Every size is at least 48px tall (tap target).
 */
 const buttonVariants = cva(
-  "group/button inline-flex shrink-0 items-center justify-center gap-2 whitespace-nowrap rounded-button border font-body-strong leading-none transition-colors duration-fast ease-out outline-none select-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-signal disabled:pointer-events-none disabled:opacity-50",
+  "group/button inline-flex shrink-0 items-center justify-center gap-2 whitespace-nowrap rounded-button border font-body-strong leading-none transition-colors duration-(--duration-fast) ease-out outline-none select-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-signal disabled:pointer-events-none disabled:opacity-50",
   {
     variants: {
       variant: {
