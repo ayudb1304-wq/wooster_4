@@ -14,8 +14,8 @@ Last updated: 2026-09-10 (afternoon)
 | P | Pre-work (repo scaffold, docs in place, references, tooling) | [~] | n/a | n/a | n/a | Code side done. Still need: reference screenshots, product screenshots, video poster + vtt, MCP plugins |
 | 00 | Setup: fonts, globals.css, tailwind, shadcn, layouts, shot script | [x] | [x] | [x] | n/a | Verified by hand on /scratch. Scratch page deleted. |
 | 01 | Header + sticky mobile CTA | [x] | [x] | [x] | [ ] | Checked by hand. Header made sticky after user feedback. Reduced-motion pass still to do. |
-| 02 | Hero | [~] | [x] | [x] | [ ] | Verified in Chrome at 390 and 1920 with real screenshot. Reveal made failsafe. Awaiting user sign-off and reduced-motion pass. |
-| 03 | Problem / ROI comparison | [ ] | [ ] | [ ] | [ ] | |
+| 02 | Hero | [x] | [x] | [x] | [ ] | User signed off. Reduced-motion pass still to do. |
+| 03 | Problem / ROI comparison | [~] | [ ] | [x] | [ ] | Layout verified at desktop. Scroll re-rank needs a visible tab to test; user to check. |
 | 04 | How it works | [ ] | [ ] | [ ] | [ ] | |
 | 05 | Video | [ ] | [ ] | [ ] | n/a | |
 | 06 | Proof | [ ] | [ ] | [ ] | n/a | |
@@ -25,7 +25,7 @@ Last updated: 2026-09-10 (afternoon)
 | 10 | Final CTA + footer + page assembly | [ ] | [ ] | [ ] | n/a | |
 | 11 | Hardening: analytics, schema, perf, a11y, metadata | [ ] | [ ] | [ ] | [ ] | |
 
-Progress: 2 / 13 steps done (P partly, 02 awaiting manual check).
+Progress: 3 / 13 steps done (P partly, 03 awaiting motion check).
 
 ## Detailed checklist
 
@@ -72,14 +72,14 @@ Progress: 2 / 13 steps done (P partly, 02 awaiting manual check).
 - [x] Verification in Chrome via MCP: CTA above the fold at 390x844, three-line H1 at desktop, real screenshot renders, bleed works. Lighthouse LCP deferred to step 11. Reduced-motion pass pending
 
 ### 03. Problem / ROI comparison
-- [ ] `components/RoiComparison.tsx`, paper bg, H2 + body cols 1 to 5
-- [ ] Two lists cols 6 to 13, breaking upward ~64px across section boundary
-- [ ] Chapter order list (6 rows) and Wooster ROI order list with mono figures + "projected"
-- [ ] Figure label "Projected gain, from your diagnostic"
-- [ ] Rows: hairline rules, 56px tall, no cards
-- [ ] GSAP + ScrollTrigger FLIP re-rank at 40% in view, 720ms desktop / 480ms mobile, count-up figures
-- [ ] Static final order under reduced motion; base CSS state = final order
-- [ ] Verification: before/after screenshots, "projected" on every figure, reduced motion shows final order
+- [x] `components/RoiComparison.tsx`, paper bg, H2 + body cols 1 to 5. Rows come from `content/roi.ts`
+- [x] Two lists cols 6 to 13 in a paper block breaking upward 64px into the hero
+- [x] Chapter order list (6 rows) and Wooster ROI order list with mono stat figures in signal + "projected"
+- [x] Figure label "Projected gain, from your diagnostic"
+- [x] Rows: hairline rules, min 56px tall (stat-size figures make the right list rows a little taller), no cards
+- [~] `components/RoiRerank.tsx`: GSAP + ScrollTrigger + Flip. Follows motion-spec.md rather than the prompt: desktop pins the block (top 15%, +80%) and scroll progress drives FLIP (0 to 0.6) and count-up (0.3 to 1), frozen once complete; touch or < 1024px plays once at 480ms at 40% in view. Fires `roi_rerank_complete`. Motion not yet seen running (automated tab is hidden, no animation frames)
+- [x] Base DOM order is the final ROI order with figures at N; JS rearranges to chapter order only when motion is allowed
+- [~] Verification: initial state (chapter order, +0 figures, "projected" on every row) confirmed at desktop. Needs: user to scroll through it in a visible tab, 390px check, reduced-motion check
 
 ### 04. How it works
 - [ ] `components/HowItWorks.tsx`, id `how-it-works`, paper bg
@@ -152,6 +152,7 @@ Progress: 2 / 13 steps done (P partly, 02 awaiting manual check).
 ## Open questions / blockers
 
 - Playwright headless Chromium hangs on page.goto on this machine. Visual checks are done through the Claude in Chrome extension instead, plus the dev-only `/preview` route that frames the page at 390 and 1024.
+- The Chrome tab used for automated checks reports document.hidden = true (its window is in the background). Animation frames do not run there, so GSAP and ScrollTrigger motion cannot be verified through it. Bring that window to the front, or check motion by hand.
 - Next 16 caches optimized images under `.next/dev/cache/images`. After replacing a file in `public/`, delete that folder or the browser keeps getting the old image.
 - Assets still needed from the founder: design reference screenshots, video poster, captions file. A true diagnostic question screenshot and 2x captures of all screens would improve steps 02 and 04.
 - Current video lives on S3 Singapore: https://wooster-concept-videos.s3.ap-southeast-1.amazonaws.com/Landing/Wooster_Prep_The_Moneyball_of_SAT_updated_06-16-2026_with_captions.mp4. Must move to Vercel Blob or Cloudflare before step 05; captions are burned in, a separate .vtt is still needed.
@@ -171,4 +172,5 @@ Progress: 2 / 13 steps done (P partly, 02 awaiting manual check).
 | 2026-09-10 | 01 | User checked. Header made sticky. Done. |
 | 2026-09-10 | 02 | Hero, HeroReveal (GSAP), placeholder roi-plan.png. Page assembled with a paper scroll placeholder for step 03. Awaiting manual check. |
 | 2026-09-10 | P/02 | Real app screenshots added by user. Mapped to roi-plan, diagnostic, progress. Hero now uses the real Concept Library image. |
+| 2026-09-10 | 03 | ROI comparison built with content/roi.ts, RoiComparison, RoiRerank. Mounted after hero. Layout verified, motion pending a visible tab. |
 | 2026-09-10 | 02 | User could not see the screenshot. Two causes: stale Next image cache, and a GSAP from() stall. Both fixed. H1 trimmed to three lines, bleed reworked, /preview route added. Verified in Chrome at 390 and 1920. |
