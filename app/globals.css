@@ -1,0 +1,266 @@
+@import "tailwindcss";
+@import "shadcn/tailwind.css";
+
+/*
+  Every value below mirrors app/design-tokens.ts. Never hardcode a color, font,
+  radius, shadow, or duration in a component; use the variable or the Tailwind
+  utility that reads it.
+*/
+
+:root {
+  /* Color */
+  --color-ink: #10203a;
+  --color-ink-deep: #0a1528;
+  --color-paper: #eef1f5;
+  --color-paper-edge: #dde3eb;
+  --color-ink-muted: #5b6b85;
+  --color-paper-muted: #b8c3d3;
+  --color-signal: #ffc23d;
+  --color-signal-deep: #e5a81f;
+
+  /* Type scale: size / line-height / weight */
+  --text-display1: clamp(2.75rem, 8vw, 6rem);
+  --text-display1--line-height: 0.95;
+  --text-display2: clamp(2rem, 5vw, 3.5rem);
+  --text-display2--line-height: 1.02;
+  --text-lead: clamp(1.125rem, 1.8vw, 1.375rem);
+  --text-lead--line-height: 1.45;
+  --text-body: 1rem;
+  --text-body--line-height: 1.6;
+  --text-small: 0.875rem;
+  --text-small--line-height: 1.5;
+  --text-stat: clamp(2rem, 6vw, 4rem);
+  --text-stat--line-height: 1;
+  --text-price: clamp(2.5rem, 6vw, 4.5rem);
+  --text-price--line-height: 1;
+  --weight-display: 300;
+  --weight-display-strong: 600;
+  --weight-body: 400;
+  --weight-body-strong: 600;
+  --weight-mono: 500;
+
+  /* Spacing (8px base) */
+  --space-1: 0.5rem;
+  --space-2: 1rem;
+  --space-3: 1.5rem;
+  --space-4: 2rem;
+  --space-6: 3rem;
+  --space-8: 4rem;
+  --space-12: 6rem;
+  --space-16: 8rem;
+  --section-y: 4rem;
+  --gutter: 1.25rem;
+  --measure: 68ch;
+
+  /* Radius */
+  --radius-button: 4px;
+  --radius-input: 4px;
+  --radius-screenshot: 8px;
+  --radius-card: 0px;
+
+  /* Shadow: the only shadow on the page */
+  --shadow-screenshot: 0 24px 60px -24px rgba(10, 21, 40, 0.45);
+
+  /* Tap targets */
+  --tap-min-height: 48px;
+  --tap-gap: 8px;
+
+  /* Motion */
+  --duration-fast: 160ms;
+  --duration-base: 320ms;
+  --duration-reveal: 720ms;
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --hero-stagger: 80ms;
+
+  /* shadcn semantic slots, pointed at tokens so the vendored components render in-system */
+  --background: var(--color-paper);
+  --foreground: var(--color-ink);
+  --card: var(--color-paper);
+  --card-foreground: var(--color-ink);
+  --popover: var(--color-paper);
+  --popover-foreground: var(--color-ink);
+  --primary: var(--color-signal);
+  --primary-foreground: var(--color-ink);
+  --secondary: var(--color-ink);
+  --secondary-foreground: var(--color-paper);
+  --muted: var(--color-paper-edge);
+  --muted-foreground: var(--color-ink-muted);
+  --accent: var(--color-paper-edge);
+  --accent-foreground: var(--color-ink);
+  --destructive: var(--color-signal-deep);
+  --border: var(--color-paper-edge);
+  --input: var(--color-paper-edge);
+  --ring: var(--color-signal);
+  --radius: var(--radius-button);
+}
+
+@media (min-width: 1024px) {
+  :root {
+    --section-y: 7.5rem;
+    --gutter: 4rem;
+  }
+}
+
+@theme inline {
+  /* Colors: ink, paper, signal and their variants */
+  --color-*: initial;
+  --color-transparent: transparent;
+  --color-current: currentColor;
+  --color-ink: var(--color-ink);
+  --color-ink-deep: var(--color-ink-deep);
+  --color-ink-muted: var(--color-ink-muted);
+  --color-paper: var(--color-paper);
+  --color-paper-edge: var(--color-paper-edge);
+  --color-paper-muted: var(--color-paper-muted);
+  --color-signal: var(--color-signal);
+  --color-signal-deep: var(--color-signal-deep);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  /* Fonts */
+  --font-*: initial;
+  --font-display: var(--font-fraunces), Georgia, serif;
+  --font-body: var(--font-schibsted), Helvetica, sans-serif;
+  --font-mono: var(--font-jetbrains), Menlo, monospace;
+  --font-sans: var(--font-body);
+
+  /* Type scale */
+  --text-display1: var(--text-display1);
+  --text-display1--line-height: var(--text-display1--line-height);
+  --text-display2: var(--text-display2);
+  --text-display2--line-height: var(--text-display2--line-height);
+  --text-lead: var(--text-lead);
+  --text-lead--line-height: var(--text-lead--line-height);
+  --text-body: var(--text-body);
+  --text-body--line-height: var(--text-body--line-height);
+  --text-small: var(--text-small);
+  --text-small--line-height: var(--text-small--line-height);
+  --text-stat: var(--text-stat);
+  --text-stat--line-height: var(--text-stat--line-height);
+  --text-price: var(--text-price);
+  --text-price--line-height: var(--text-price--line-height);
+
+  /* Radius */
+  --radius-*: initial;
+  --radius-none: 0px;
+  --radius-button: var(--radius-button);
+  --radius-input: var(--radius-input);
+  --radius-screenshot: var(--radius-screenshot);
+  --radius-card: var(--radius-card);
+
+  /* Shadow */
+  --shadow-*: initial;
+  --shadow-none: 0 0 #0000;
+  --shadow-screenshot: var(--shadow-screenshot);
+
+  /* Spacing helpers */
+  --spacing-section-y: var(--section-y);
+  --spacing-gutter: var(--gutter);
+  --spacing-tap: var(--tap-min-height);
+  --spacing-tap-gap: var(--tap-gap);
+
+  /* Motion */
+  --ease-out: var(--ease-out);
+  --ease-in-out: var(--ease-in-out);
+  --duration-fast: var(--duration-fast);
+  --duration-base: var(--duration-base);
+  --duration-reveal: var(--duration-reveal);
+
+  /* Breakpoints */
+  --breakpoint-*: initial;
+  --breakpoint-sm: 390px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 1024px;
+  --breakpoint-xl: 1440px;
+}
+
+@layer base {
+  * {
+    border-color: var(--color-paper-edge);
+  }
+
+  html {
+    font-family: var(--font-body);
+    color: var(--color-ink);
+    background-color: var(--color-paper);
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    font-size: var(--text-body);
+    line-height: var(--text-body--line-height);
+    font-weight: var(--weight-body);
+    font-family: var(--font-body);
+  }
+
+  p {
+    max-width: var(--measure);
+  }
+
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-display);
+    font-weight: var(--weight-display);
+    font-variation-settings: "WONK" 1;
+    text-wrap: balance;
+    max-width: 22ch;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-signal);
+    outline-offset: 2px;
+  }
+
+  /* Reduced motion: every base state is the finished state, so killing motion is safe. */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation: none !important;
+      transition: none !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+@utility font-display-strong {
+  font-family: var(--font-display);
+  font-weight: var(--weight-display-strong);
+}
+
+@utility font-body-strong {
+  font-family: var(--font-body);
+  font-weight: var(--weight-body-strong);
+}
+
+@utility font-mono-figure {
+  font-family: var(--font-mono);
+  font-weight: var(--weight-mono);
+  font-variant-numeric: tabular-nums;
+}
+
+@utility wonk-off {
+  font-variation-settings: "WONK" 0;
+}
+
+@utility measure {
+  max-width: var(--measure);
+}
