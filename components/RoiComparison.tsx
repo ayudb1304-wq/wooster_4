@@ -1,13 +1,15 @@
 import { chapterOrder, roiRows } from "@/content/roi";
 import { RoiRerank } from "@/components/RoiRerank";
+import { SectionBackground } from "@/components/SectionBackground";
 
 // Copy: content/copy.md → Problem / ROI comparison. Verbatim.
 // This is the page's one memorable moment. The spec's upward overlap into the
 // hero was removed at the founder's request; the section starts below the hero.
 export function RoiComparison() {
   return (
-    <section className="relative z-10 bg-paper text-ink" data-roi-section data-section-theme="paper">
-      <div className="mx-auto grid max-w-[1440px] grid-cols-1 gap-y-12 px-gutter py-section-y lg:grid-cols-12 lg:gap-x-8">
+    <section className="relative z-10 overflow-hidden bg-paper text-ink" data-roi-section data-section-theme="paper">
+      <SectionBackground variant="grid" />
+      <div className="relative mx-auto grid max-w-[1440px] grid-cols-1 gap-y-12 px-gutter py-section-y lg:grid-cols-12 lg:gap-x-8">
         <div className="lg:col-span-5 lg:col-start-1">
           <h2 className="text-display2">Generic prep goes chapter by chapter. Your score doesn&apos;t.</h2>
           <p className="mt-6 max-w-[60ch] text-body">

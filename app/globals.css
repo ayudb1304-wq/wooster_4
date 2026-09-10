@@ -300,3 +300,22 @@
     opacity: 1;
   }
 }
+
+/* Section background patterns (after the MagicUI dot and grid patterns on 21st.dev,
+   rebuilt in tokens). Colour comes from the text colour; opacity keeps them quiet.
+   pattern-fade masks the edges so the texture sits behind the content, not on it. */
+@utility pattern-dots {
+  background-image: radial-gradient(circle, currentColor 1px, transparent 1.2px);
+  background-size: 22px 22px;
+}
+
+@utility pattern-grid {
+  background-image:
+    linear-gradient(currentColor 1px, transparent 1px),
+    linear-gradient(90deg, currentColor 1px, transparent 1px);
+  background-size: 56px 56px;
+}
+
+@utility pattern-fade {
+  mask-image: radial-gradient(ellipse 70% 80% at 50% 40%, black 30%, transparent 100%);
+}

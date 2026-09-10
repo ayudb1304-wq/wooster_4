@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { SectionBackground } from "@/components/SectionBackground";
 
 // Copy: content/copy.md → How it works. Verbatim. "[25] minutes" is a founder-confirmed value.
 const steps = [
@@ -31,43 +32,43 @@ const steps = [
   },
 ];
 
-// Bento: step 1 is tall at left (cols 1 to 5, two rows); steps 2 and 3 stack at right.
-// No icons, no hover effects. The only motion is the CSS scroll-driven fade on each screenshot.
+// Three aligned columns. Text blocks share one height and every screenshot is
+// cropped to the same 4:3 frame from the top, so all three images sit on the
+// same top and bottom lines. No borders, no cards, no icons, no hover effects.
+// The only motion is the CSS scroll-driven fade on each screenshot.
 export function HowItWorks() {
   return (
-    <section id="how-it-works" className="bg-paper text-ink" data-section-theme="paper">
-      <div className="mx-auto max-w-[1440px] px-gutter py-section-y">
+    <section
+      id="how-it-works"
+      className="relative overflow-hidden bg-paper text-ink"
+      data-section-theme="paper"
+    >
+      <SectionBackground variant="grid" />
+      <div className="relative mx-auto max-w-[1440px] px-gutter py-section-y">
         <h2 className="text-display2">Three steps. No guesswork.</h2>
 
-        <ol className="mt-12 grid grid-cols-1 gap-x-8 gap-y-12 lg:mt-16 lg:grid-cols-12 lg:grid-rows-[auto_auto] lg:gap-y-16">
-          {steps.map((step, i) => (
-            <li
-              key={step.n}
-              className={
-                i === 0
-                  ? "lg:col-span-5 lg:row-span-2"
-                  : "grid grid-cols-1 gap-6 md:grid-cols-[minmax(0,2fr)_minmax(0,3fr)] md:items-start lg:col-span-7 lg:col-start-6"
-              }
-            >
-              <div>
+        <ol className="mt-12 grid grid-cols-1 gap-x-8 gap-y-12 lg:mt-16 lg:grid-cols-3">
+          {steps.map((step) => (
+            <li key={step.n} className="flex flex-col">
+              <div className="lg:min-h-44">
                 <p className="font-display text-display2 text-ink-muted" aria-hidden="true">
                   {step.n}
                 </p>
-                <h3 className="mt-2 font-body-strong text-body text-ink max-w-none">
+                <h3 className="mt-2 max-w-none font-body-strong text-body text-ink">
                   <span className="sr-only">Step {step.n}: </span>
                   {step.name}
                 </h3>
-                <p className="mt-1 max-w-[40ch] text-body text-ink-muted">{step.text}</p>
+                <p className="mt-1 max-w-[36ch] text-body text-ink-muted">{step.text}</p>
               </div>
-              <div className={i === 0 ? "mt-8" : ""}>
+              <div className="screenshot-enter mt-8 aspect-[4/3] w-full overflow-hidden rounded-screenshot shadow-screenshot">
                 <Image
                   src={step.src}
                   alt={step.alt}
                   width={step.width}
                   height={step.height}
                   loading="lazy"
-                  sizes={i === 0 ? "(min-width: 1024px) 40vw, 100vw" : "(min-width: 1024px) 34vw, (min-width: 768px) 60vw, 100vw"}
-                  className="screenshot-enter h-auto w-full rounded-screenshot shadow-screenshot"
+                  sizes="(min-width: 1024px) 30vw, 100vw"
+                  className="h-full w-full object-cover object-top"
                 />
               </div>
             </li>

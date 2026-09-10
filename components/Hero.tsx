@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { HeroReveal } from "@/components/HeroReveal";
+import { SectionBackground } from "@/components/SectionBackground";
 
 // Copy: content/copy.md → Hero. Verbatim, nothing added.
 export function Hero() {
@@ -11,7 +12,8 @@ export function Hero() {
       data-hero
       data-section-theme="ink"
     >
-      <div className="mx-auto grid max-w-[1440px] grid-cols-1 gap-y-12 px-gutter pt-12 pb-16 lg:grid-cols-12 lg:gap-x-8 lg:pt-24 lg:pb-32">
+      <SectionBackground variant="dots" />
+      <div className="relative mx-auto grid max-w-[1440px] grid-cols-1 gap-y-12 px-gutter pt-12 pb-16 lg:grid-cols-12 lg:gap-x-8 lg:pt-24 lg:pb-32">
         <div className="lg:col-span-7 lg:col-start-1">
           <h1 className="text-display1 text-paper" data-hero-reveal>
             Moneyball your SAT. Study what actually moves your score.
