@@ -43,7 +43,7 @@ export function Hero() {
         </div>
 
         <div
-          className="relative self-center lg:col-span-5 lg:col-start-8"
+          className="relative -mr-[12%] self-center lg:col-span-5 lg:col-start-8 lg:w-[48vw] lg:max-w-none"
           data-hero-reveal="screenshot"
         >
           <Image
@@ -53,11 +53,16 @@ export function Hero() {
             height={932}
             priority
             fetchPriority="high"
-            sizes="(min-width: 1024px) 42vw, 100vw"
+            sizes="(min-width: 1024px) 48vw, 112vw"
             className="h-auto w-full rounded-screenshot shadow-screenshot"
           />
         </div>
       </div>
+      {/* Soft ink fade so the bleeding screenshot blends into the edge instead of cutting off hard. */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-y-0 right-0 w-[22vw] bg-gradient-to-r from-ink/0 via-ink/70 to-ink lg:w-[16vw]"
+      />
       <HeroReveal />
     </section>
   );
