@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { HeaderRule } from "@/components/HeaderRule";
+import { Logo } from "@/components/Logo";
 
 // Copy: content/copy.md → Header
 export function Header() {
@@ -10,11 +11,8 @@ export function Header() {
       data-site-header
     >
       <div className="mx-auto flex h-14 max-w-[1440px] items-center justify-between px-gutter lg:h-16">
-        <Link
-          href="/"
-          className="font-display-strong wonk-off text-[1.375rem] leading-none tracking-[-0.01em] text-paper min-h-tap inline-flex items-center"
-        >
-          Wooster
+        <Link href="/" className="min-h-tap inline-flex items-center" aria-label="Wooster Prep home">
+          <Logo tone="paper" height={28} priority className="h-7 w-auto lg:h-8" />
         </Link>
 
         <nav aria-label="Primary" className="flex items-center gap-tap-gap lg:gap-8">

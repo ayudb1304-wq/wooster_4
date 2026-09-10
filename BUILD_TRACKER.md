@@ -34,7 +34,7 @@ Progress: 1 / 13 steps done (P partly, 01 awaiting manual check).
 - [x] Copy `CLAUDE.md` to repo root
 - [x] Copy `design-tokens.ts` to `app/design-tokens.ts`
 - [x] Copy `copy.md` to `content/copy.md`
-- [ ] Add 1 to 2 reference screenshots to `/design/reference/`
+- [ ] Add 1 to 2 reference screenshots to `/design/reference/` (live logo JPEG and live OG image saved there for reference)
 - [ ] Product screenshots in `/public/screens/` (diagnostic.png, roi-plan.png, progress.png)
 - [ ] Video poster + captions file (`/public/video/moneyball.vtt`) and `NEXT_PUBLIC_VIDEO_URL`
 - [!] Install Frontend Design plugin, Playwright MCP, shadcn MCP (Playwright does not run here; user checks visually by hand)
@@ -54,7 +54,7 @@ Progress: 1 / 13 steps done (P partly, 01 awaiting manual check).
 
 ### 01. Header + sticky mobile CTA
 - [x] `components/Header.tsx` (server component) + `components/HeaderRule.tsx` client island for the scroll hairline
-- [x] Ink-deep bg, 56px mobile / 64px desktop, Fraunces 600 wordmark
+- [x] Ink-deep bg, 56px mobile / 64px desktop. Wordmark is the real logo from woosterprep.com (`components/Logo.tsx`, paper and ink PNGs in `public/brand/`) instead of Fraunces text
 - [x] Desktop links: How it works, Student login, primary CTA. Mobile: wordmark + Student login only
 - [x] `components/StickyCta.tsx`: watches `[data-hero-cta]`, hides when `[data-final-cta]` is in view, hidden at >= 1024px, safe-area padding
 - [x] Slide-up 320ms token ease, instant under reduced motion (global kill switch)
@@ -152,7 +152,9 @@ Progress: 1 / 13 steps done (P partly, 01 awaiting manual check).
 ## Open questions / blockers
 
 - Playwright headless Chromium hangs on page.goto on this machine. Screenshot verification is manual until fixed.
-- Assets still needed from the founder: reference screenshots, product screenshots (diagnostic.png, roi-plan.png, progress.png), video poster, captions file, video URL.
+- Assets still needed from the founder: reference screenshots, product screenshots (diagnostic.png, roi-plan.png, progress.png), video poster, captions file.
+- Current video lives on S3 Singapore: https://wooster-concept-videos.s3.ap-southeast-1.amazonaws.com/Landing/Wooster_Prep_The_Moneyball_of_SAT_updated_06-16-2026_with_captions.mp4. Must move to Vercel Blob or Cloudflare before step 05; captions are burned in, a separate .vtt is still needed.
+- Live OG image is off-brand (blue, sans). Generate a new one in step 11.
 - Title metadata: em dash from live site replaced with a colon. Confirm.
 
 ## Log
@@ -164,3 +166,4 @@ Progress: 1 / 13 steps done (P partly, 01 awaiting manual check).
 | 2026-09-10 | 00 | Fonts, globals.css tokens, shadcn button/accordion/carousel retokened, layouts, metadata, shot script, scratch page. Awaiting manual visual check. |
 | 2026-09-10 | 00 | Verified by hand. Scratch page deleted. Done. |
 | 2026-09-10 | 01 | Header, HeaderRule, StickyCta built. Page assembled with a temporary hero placeholder. Awaiting manual check. |
+| 2026-09-10 | 01 | Pulled the real logo from woosterprep.com, made transparent paper and ink PNGs, used in header via Logo component. |
