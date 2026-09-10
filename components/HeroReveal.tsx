@@ -21,9 +21,12 @@ export function HeroReveal() {
     const section = document.querySelector<HTMLElement>("[data-hero]");
     if (!section) return;
     const copy = Array.from(
-      section.querySelectorAll<HTMLElement>('[data-hero-reveal]:not([data-hero-reveal="screenshot"])'),
+      section.querySelectorAll<HTMLElement>(
+        '[data-hero-reveal]:not([data-hero-reveal="screenshot"]):not([data-hero-reveal="fade"])',
+      ),
     );
     const shot = section.querySelector<HTMLElement>('[data-hero-reveal="screenshot"]');
+    const fade = section.querySelector<HTMLElement>('[data-hero-reveal="fade"]');
     if (copy.length === 0 || !shot) return;
 
     let cancelled = false;
@@ -50,6 +53,8 @@ export function HeroReveal() {
           { opacity: 1, y: 0, duration: 0.48 },
           `-=${0.42 - stagger}`,
         );
+        // The edge fade arrives with the screenshot so the two read as one element.
+        if (fade) tl.fromTo(fade, { opacity: 0 }, { opacity: 1, duration: 0.48 }, "<");
       }, section);
     });
 
