@@ -17,15 +17,15 @@ Last updated: 2026-09-10 (afternoon)
 | 02 | Hero | [x] | [x] | [x] | [ ] | User signed off. Reduced-motion pass still to do. |
 | 03 | Problem / ROI comparison | [x] | [x] | [x] | [ ] | Signed off after pin and overlap changes. Reduced-motion pass still to do. |
 | 04 | How it works | [x] | [x] | [x] | [ ] | Signed off implicitly (user moved on). Reduced-motion pass still to do. |
-| 05 | Video | [~] | [ ] | [x] | n/a | Built with the founder video served locally. Needs hosting move, real captions, and the 90-second claim resolved. |
-| 06 | Proof | [ ] | [ ] | [ ] | n/a | |
+| 05 | Video | [x] | [ ] | [x] | n/a | Signed off implicitly. Open items: hosting move, real captions, the 90-second claim. 390 check pending. |
+| 06 | Proof | [~] | [ ] | [x] | n/a | Built and checked at desktop. Awaiting sign-off. |
 | 07 | Testimonials | [ ] | [ ] | [ ] | [ ] | |
 | 08 | Pricing | [ ] | [ ] | [ ] | n/a | |
 | 09 | Guarantee + FAQ | [ ] | [ ] | [ ] | n/a | |
 | 10 | Final CTA + footer + page assembly | [ ] | [ ] | [ ] | n/a | |
 | 11 | Hardening: analytics, schema, perf, a11y, metadata | [ ] | [ ] | [ ] | [ ] | |
 
-Progress: 5 / 13 steps done (P partly, 05 awaiting sign-off).
+Progress: 6 / 13 steps done (P partly, 06 awaiting sign-off).
 
 ## Detailed checklist
 
@@ -97,11 +97,11 @@ Progress: 5 / 13 steps done (P partly, 05 awaiting sign-off).
 - [~] Verification: confirmed in Chrome that no .mp4 request happens before the click and the video element mounts after it. 390px check and a real playback check by the user pending
 
 ### 06. Proof
-- [ ] `components/Proof.tsx`, ink bg, H2 + body cols 1 to 7
-- [ ] Stat strip: three body 600 items with hairline rule above, no mono, no icons
-- [ ] Mount `<Testimonials />` (null when empty)
-- [ ] Projection footnote in small paper-muted text
-- [ ] Verification: screenshots and deltas fixed
+- [x] `components/Proof.tsx`, ink bg with dots texture, H2 + body cols 1 to 7, body 60ch paper-muted
+- [x] Stat strip: three body 600 items with hairline rule above, row on md+, column on mobile, no mono, no icons
+- [x] `<Testimonials />` mounted; `content/testimonials.ts` created empty with the Testimonial type; the component is a stub returning null until step 07
+- [x] Projection footnote in small paper-muted text
+- [~] Verification: checked at desktop. 390 check pending
 
 ### 07. Testimonials
 - [ ] Install solaceui Testimonial Section 3 from 21st.dev, move to `components/Testimonials.tsx`, strip extras
@@ -180,6 +180,7 @@ Progress: 5 / 13 steps done (P partly, 05 awaiting sign-off).
 | 2026-09-10 | 03 | ROI comparison built with content/roi.ts, RoiComparison, RoiRerank. Mounted after hero. Layout verified, motion pending a visible tab. |
 | 2026-09-10 | 02 | User asked for a visible right edge on the hero image. Bleed removed, shadow token deepened (0 24px 64px -8px rgba(2,6,16,0.7)). |
 | 2026-09-10 | 01 | Header: translucent blur on scroll, smaller CTA, and palette that follows the section beneath (ink or paper). Sections tagged with data-section-theme. |
+| 2026-09-10 | 06 | Proof built and mounted with empty testimonials data and stub. |
 | 2026-09-10 | 04 | How it works rebuilt as three aligned columns after user feedback. Subtle dot and grid backgrounds added to hero, ROI, how it works, video. Dev server restarted to fix stale Tailwind scan. |
 | 2026-09-10 | 05 | Video section built with the founder-supplied mp4 served from public/video in dev, poster cut at 3.5s, placeholder vtt. Verified click-to-play wiring in Chrome. |
 | 2026-09-10 | 04 | How it works built and mounted. Bento cells top-aligned after a first pass showed bottom-anchored images. |
