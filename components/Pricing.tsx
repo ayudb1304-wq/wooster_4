@@ -38,7 +38,7 @@ export function Pricing() {
                 <li key={b.text} className="flex items-center gap-4 py-3 text-body text-paper">
                   <Check className="size-5 shrink-0 text-signal" strokeWidth={2.5} aria-hidden="true" />
                   {b.href ? (
-                    <a href={b.href} className="underline decoration-paper-muted underline-offset-4 hover:decoration-paper">
+                    <a href={b.href} className="-my-3 inline-flex min-h-tap items-center underline decoration-paper-muted underline-offset-4 hover:decoration-paper">
                       {b.text}
                     </a>
                   ) : (
