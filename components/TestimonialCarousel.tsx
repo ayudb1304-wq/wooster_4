@@ -26,13 +26,18 @@ export function TestimonialCarousel({ items }: { items: Testimonial[] }) {
 
   useEffect(() => {
     if (!api) return;
-    const onSelect = () => setSelected(api.selectedScrollSnap());
+    // When everything fits (three entries, desktop) there is one snap, so
+    // feature the middle entry; otherwise follow the selected snap.
+    const onSelect = () =>
+      setSelected(
+        api.scrollSnapList().length <= 1 ? Math.floor(items.length / 2) : api.selectedScrollSnap(),
+      );
     onSelect();
     api.on("select", onSelect);
     return () => {
       api.off("select", onSelect);
     };
-  }, [api]);
+  }, [api, items.length]);
 
   return (
     <Carousel
