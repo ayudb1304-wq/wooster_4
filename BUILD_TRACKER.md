@@ -53,7 +53,7 @@ Progress: 3 / 13 steps done (P partly, 03 awaiting motion check).
 - [x] Verification: scratch page checked by hand at 390px and 1440px, fonts confirmed, then deleted
 
 ### 01. Header + sticky mobile CTA
-- [x] `components/Header.tsx` (server component) + `components/HeaderRule.tsx` client island for the scroll hairline
+- [x] `components/Header.tsx` (server component) + `components/HeaderRule.tsx` client island. Founder additions 2026-09-10: header is sticky, turns translucent with backdrop blur after 8px, and adopts the palette of the section under it (ink over dark sections, paper with the ink logo over light ones). EVERY SECTION MUST CARRY `data-section-theme="ink"` or `"paper"` for this to work. Header CTA uses the small button size
 - [x] Ink-deep bg, 56px mobile / 64px desktop. Wordmark is the real logo from woosterprep.com (`components/Logo.tsx`, paper and ink PNGs in `public/brand/`) instead of Fraunces text
 - [x] Desktop links: How it works, Student login, primary CTA. Mobile: wordmark + Student login only
 - [x] `components/StickyCta.tsx`: watches `[data-hero-cta]`, hides when `[data-final-cta]` is in view, hidden at >= 1024px, safe-area padding
@@ -174,6 +174,7 @@ Progress: 3 / 13 steps done (P partly, 03 awaiting motion check).
 | 2026-09-10 | P/02 | Real app screenshots added by user. Mapped to roi-plan, diagnostic, progress. Hero now uses the real Concept Library image. |
 | 2026-09-10 | 03 | ROI comparison built with content/roi.ts, RoiComparison, RoiRerank. Mounted after hero. Layout verified, motion pending a visible tab. |
 | 2026-09-10 | 02 | User asked for a visible right edge on the hero image. Bleed removed, shadow token deepened (0 24px 64px -8px rgba(2,6,16,0.7)). |
+| 2026-09-10 | 01 | Header: translucent blur on scroll, smaller CTA, and palette that follows the section beneath (ink or paper). Sections tagged with data-section-theme. |
 | 2026-09-10 | 02 | User then asked for the bleed back with a soft fade. Bleed restored, ink gradient fade added on the right of the hero. |
 | 2026-09-10 | 03 | User asked to remove the overlap into the hero. Removed. Page has no grid-breaking moment now. |
 | 2026-09-10 | 03 | User flagged the pin: only the lists block pinned (headline scrolled away, block shifted 30px). Now the whole section pins. Headline levelled with the lists. |
