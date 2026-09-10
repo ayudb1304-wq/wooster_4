@@ -6,10 +6,12 @@ import { ConceptVideo } from "@/components/ConceptVideo";
 import { Proof } from "@/components/Proof";
 import { Pricing } from "@/components/Pricing";
 import { GuaranteeFaq } from "@/components/GuaranteeFaq";
+import { FinalCta } from "@/components/FinalCta";
+import { Footer } from "@/components/Footer";
 import { StickyCta } from "@/components/StickyCta";
 
-// Sections are assembled here in the fixed order from CLAUDE.md as each one is built.
-// The ink block below is a scroll placeholder until step 10 adds the final CTA and footer.
+// Fixed section order from CLAUDE.md. One H1 (hero); every section an H2;
+// testimonials an H3.
 export default function LandingPage() {
   return (
     <>
@@ -22,10 +24,9 @@ export default function LandingPage() {
         <Proof />
         <Pricing />
         <GuaranteeFaq />
-        <section className="bg-ink px-gutter py-section-y text-paper" style={{ minHeight: "40vh" }} data-section-theme="ink">
-          <p className="text-small text-paper-muted">Scroll area placeholder (replaced in step 10)</p>
-        </section>
+        <FinalCta />
       </main>
+      <Footer />
       <StickyCta />
     </>
   );
