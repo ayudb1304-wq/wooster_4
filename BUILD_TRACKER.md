@@ -36,7 +36,7 @@ Progress: 5 / 13 steps done (P partly, 05 awaiting sign-off).
 - [x] Copy `copy.md` to `content/copy.md`
 - [ ] Add 1 to 2 reference screenshots to `/design/reference/` (live logo JPEG and live OG image saved there for reference)
 - [x] Product screenshots in `/public/screens/`: roi-plan.png = Concept Library (1138x932), progress.png = Stats dashboard (1028x922), diagnostic.png = Practice Exams page (1120x875, closest available; a real diagnostic question screen would be better). Originals in `design/reference/app/`
-- [~] Video: founder supplied `public/video/moneyball.mp4` (76MB, 1920x1080, 4m24s, captions burned in). Git-ignored. Poster cut at 9s with ffmpeg (imageio-ffmpeg) to `public/video/poster.jpg`. `moneyball.vtt` is a placeholder. `NEXT_PUBLIC_VIDEO_URL=/video/moneyball.mp4` in `.env.local` for dev only
+- [~] Video: founder supplied `public/video/moneyball.mp4` (76MB, 1920x1080, 4m24s, captions burned in). Git-ignored. Poster cut at 3.5s (caption-free frame) with ffmpeg (imageio-ffmpeg) to `public/video/poster.jpg`. `moneyball.vtt` is a placeholder. `NEXT_PUBLIC_VIDEO_URL=/video/moneyball.mp4` in `.env.local` for dev only
 - [!] Install Frontend Design plugin, Playwright MCP, shadcn MCP (Playwright does not run here; user checks visually by hand)
 - [x] `git init` and first commit
 
@@ -178,7 +178,7 @@ Progress: 5 / 13 steps done (P partly, 05 awaiting sign-off).
 | 2026-09-10 | 03 | ROI comparison built with content/roi.ts, RoiComparison, RoiRerank. Mounted after hero. Layout verified, motion pending a visible tab. |
 | 2026-09-10 | 02 | User asked for a visible right edge on the hero image. Bleed removed, shadow token deepened (0 24px 64px -8px rgba(2,6,16,0.7)). |
 | 2026-09-10 | 01 | Header: translucent blur on scroll, smaller CTA, and palette that follows the section beneath (ink or paper). Sections tagged with data-section-theme. |
-| 2026-09-10 | 05 | Video section built with the founder-supplied mp4 served from public/video in dev, poster cut at 9s, placeholder vtt. Verified click-to-play wiring in Chrome. |
+| 2026-09-10 | 05 | Video section built with the founder-supplied mp4 served from public/video in dev, poster cut at 3.5s, placeholder vtt. Verified click-to-play wiring in Chrome. |
 | 2026-09-10 | 04 | How it works built and mounted. Bento cells top-aligned after a first pass showed bottom-anchored images. |
 | 2026-09-10 | 01 | Header theme change made smooth: logos crossfade, colours transition over 720ms. Found and fixed that no duration class had been applying anywhere (Tailwind v4). |
 | 2026-09-10 | 02 | User then asked for the bleed back with a soft fade. Bleed restored, ink gradient fade added on the right of the hero. |
