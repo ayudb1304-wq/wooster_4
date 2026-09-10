@@ -50,10 +50,10 @@ export function Hero() {
           data-hero-reveal="screenshot"
         >
           <Image
-            src="/screens/roi-plan.png"
-            alt="Wooster study plan ranking SAT concepts by projected points gained"
-            width={1138}
-            height={932}
+            src="/screens/progress.png"
+            alt="Wooster stats dashboard showing the projected score and what to study next"
+            width={1028}
+            height={922}
             priority
             fetchPriority="high"
             sizes="(min-width: 1024px) 48vw, 112vw"

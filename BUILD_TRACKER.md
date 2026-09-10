@@ -35,7 +35,7 @@ Progress: 5 / 13 steps done (P partly, 05 awaiting sign-off).
 - [x] Copy `design-tokens.ts` to `app/design-tokens.ts`
 - [x] Copy `copy.md` to `content/copy.md`
 - [ ] Add 1 to 2 reference screenshots to `/design/reference/` (live logo JPEG and live OG image saved there for reference)
-- [x] Product screenshots in `/public/screens/`: roi-plan.png = Concept Library (1138x932), progress.png = Stats dashboard (1028x922), diagnostic.png = Practice Exams page (1120x875, closest available; a real diagnostic question screen would be better). Originals in `design/reference/app/`
+- [x] Product screenshots in `/public/screens/`: roi-plan.png = Concept Library (1138x932), progress.png = Stats dashboard (1028x922, also the hero image since 2026-09-10), diagnostic.png = Practice Exams page (1120x875, closest available; a real diagnostic question screen would be better). Originals in `design/reference/app/`
 - [~] Video: founder supplied `public/video/moneyball.mp4` (76MB, 1920x1080, 4m24s, captions burned in). Git-ignored. Poster cut at 3.5s (caption-free frame) with ffmpeg (imageio-ffmpeg) to `public/video/poster.jpg`. `moneyball.vtt` is a placeholder. `NEXT_PUBLIC_VIDEO_URL=/video/moneyball.mp4` in `.env.local` for dev only
 - [!] Install Frontend Design plugin, Playwright MCP, shadcn MCP (Playwright does not run here; user checks visually by hand)
 - [x] `git init` and first commit
