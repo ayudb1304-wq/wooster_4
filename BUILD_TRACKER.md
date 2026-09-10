@@ -113,9 +113,9 @@ Progress: 8 / 13 steps done (P partly, 08 awaiting sign-off).
 - [~] Verification: with the flag, checked at desktop in Chrome (featured 591px, flanks 376px at 0.6, buttons 48px, Lottie canvas mounted). Still to do: 390 check, and a production build without the flag to confirm no "Sample Student" string ships
 
 ### 08. Pricing
-- [x] `components/Pricing.tsx`, id `pricing`, ink bg with dots, H2 + price cols 1 to 6, bullets + CTA cols 7 to 12, stacked on mobile
+- [x] `components/Pricing.tsx`, id `pricing`, ink bg with dots. Rebuilt to the founder reference (2026-09-10): H2 and anchor line in cols 1 to 5; a rounded ink-deep card in cols 7 to 12 with title, subtitle, an inner panel listing the plan with signal check marks, and a footer with the price beside a pill CTA. New radius tokens: panel 24px, panelInner 16px, pill
 - [x] "$249.99" mono price size in paper, "for two months" beneath
-- [x] Plain bullet list with hairline rules, no icons, guarantee bullet links to `#guarantee`
+- [x] Bullets inside the inner panel with lucide Check icons (founder reference), guarantee bullet links to `#guarantee`
 - [x] Anchor line (en dash written as "to" per house style), primary CTA full width on mobile with placement pricing, button sub text
 - [x] `components/PricingView.tsx` fires `pricing_view` once at 50% in view
 - [~] Verification: desktop checked. Mobile check of guarantee and footnote proximity pending step 09
@@ -182,6 +182,7 @@ Progress: 8 / 13 steps done (P partly, 08 awaiting sign-off).
 | 2026-09-10 | 02 | User asked for a visible right edge on the hero image. Bleed removed, shadow token deepened (0 24px 64px -8px rgba(2,6,16,0.7)). |
 | 2026-09-10 | 01 | Header: translucent blur on scroll, smaller CTA, and palette that follows the section beneath (ink or paper). Sections tagged with data-section-theme. |
 | 2026-09-10 | 08 | Pricing built and mounted. |
+| 2026-09-10 | 08 | Pricing rebuilt as a card per the founder screenshot: inner check list, price beside a pill CTA. |
 | 2026-09-10 | 07/04 | Founder supplied two 21st.dev components. Circular Testimonials replaces the Embla carousel; Elastic Gallery replaces the three-column screenshots in How it works. Both retokened, Framer and react-icons swapped for CSS and lucide. |
 | 2026-09-10 | 07 | Testimonials carousel built natively with Lottie accent, sample data behind a flag. Verified at desktop. |
 | 2026-09-10 | 06 | Proof built and mounted with empty testimonials data and stub. |

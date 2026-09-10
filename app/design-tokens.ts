@@ -38,7 +38,7 @@ export const space = {
   measure: "68ch",
 } as const;
 
-export const radius = { button: "4px", input: "4px", screenshot: "8px", card: "0px" } as const;
+export const radius = { button: "4px", input: "4px", screenshot: "8px", card: "0px", panel: "24px", panelInner: "16px", pill: "9999px" } as const;
 
 export const shadow = {
   screenshot: "0 24px 64px -8px rgba(2, 6, 16, 0.7)", // the only shadow on the page. Enough spread to show on the sides

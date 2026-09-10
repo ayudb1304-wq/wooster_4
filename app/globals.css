@@ -59,6 +59,9 @@
   --radius-input: 4px;
   --radius-screenshot: 8px;
   --radius-card: 0px;
+  --radius-panel: 24px;
+  --radius-panel-inner: 16px;
+  --radius-pill: 9999px;
 
   /* Shadow: the only shadow on the page */
   --shadow-screenshot: 0 24px 64px -8px rgba(2, 6, 16, 0.7);
@@ -168,6 +171,9 @@
   --radius-input: var(--radius-input);
   --radius-screenshot: var(--radius-screenshot);
   --radius-card: var(--radius-card);
+  --radius-panel: var(--radius-panel);
+  --radius-panel-inner: var(--radius-panel-inner);
+  --radius-pill: var(--radius-pill);
 
   /* Shadow */
   --shadow-*: initial;
