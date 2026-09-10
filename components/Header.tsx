@@ -7,7 +7,7 @@ import { Logo } from "@/components/Logo";
 export function Header() {
   return (
     <header
-      className="sticky top-0 z-40 bg-ink-deep text-paper"
+      className="sticky top-0 z-40 bg-ink-deep text-paper transition-colors duration-base ease-out data-[scrolled=true]:bg-ink-deep/70 data-[scrolled=true]:backdrop-blur-md data-[scrolled=true]:backdrop-saturate-150"
       data-site-header
     >
       <div className="mx-auto flex h-14 max-w-[1440px] items-center justify-between px-gutter lg:h-16">
@@ -29,6 +29,7 @@ export function Header() {
             Student login
           </Link>
           <Button
+            size="sm"
             className="hidden lg:inline-flex"
             nativeButton={false}
             render={<Link href="/diagnostic" data-placement="header" />}

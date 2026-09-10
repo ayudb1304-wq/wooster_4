@@ -23,6 +23,8 @@ const buttonVariants = cva(
         onInk: "",
       },
       size: {
+        // sm is for desktop-only placements (header). Mobile targets stay at 48px.
+        sm: "min-h-10 px-4 text-small",
         default: "min-h-tap",
         lg: "min-h-14 px-8",
         icon: "min-h-tap min-w-tap px-0 size-tap",
