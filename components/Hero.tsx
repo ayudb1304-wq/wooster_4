@@ -11,7 +11,7 @@ export function Hero() {
       data-hero
     >
       <div className="mx-auto grid max-w-[1440px] grid-cols-1 gap-y-12 px-gutter pt-12 pb-16 lg:grid-cols-12 lg:gap-x-8 lg:pt-24 lg:pb-32">
-        <div className="lg:col-span-6 lg:col-start-1">
+        <div className="lg:col-span-7 lg:col-start-1">
           <h1 className="text-display1 text-paper" data-hero-reveal>
             Moneyball your SAT. Study what actually moves your score.
           </h1>
@@ -43,7 +43,7 @@ export function Hero() {
         </div>
 
         <div
-          className="relative -mr-[12%] lg:col-span-7 lg:col-start-7 lg:-mr-[18%] xl:-mr-[10%]"
+          className="relative -mr-[12%] self-center lg:col-span-5 lg:col-start-8 lg:w-[48vw] lg:max-w-none"
           data-hero-reveal="screenshot"
         >
           <Image

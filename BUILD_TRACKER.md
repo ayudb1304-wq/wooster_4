@@ -14,7 +14,7 @@ Last updated: 2026-09-10 (afternoon)
 | P | Pre-work (repo scaffold, docs in place, references, tooling) | [~] | n/a | n/a | n/a | Code side done. Still need: reference screenshots, product screenshots, video poster + vtt, MCP plugins |
 | 00 | Setup: fonts, globals.css, tailwind, shadcn, layouts, shot script | [x] | [x] | [x] | n/a | Verified by hand on /scratch. Scratch page deleted. |
 | 01 | Header + sticky mobile CTA | [x] | [x] | [x] | [ ] | Checked by hand. Header made sticky after user feedback. Reduced-motion pass still to do. |
-| 02 | Hero | [~] | [ ] | [ ] | [ ] | Built with a generated placeholder screenshot. Awaiting manual check. |
+| 02 | Hero | [~] | [x] | [x] | [ ] | Verified in Chrome at 390 and 1920 with real screenshot. Reveal made failsafe. Awaiting user sign-off and reduced-motion pass. |
 | 03 | Problem / ROI comparison | [ ] | [ ] | [ ] | [ ] | |
 | 04 | How it works | [ ] | [ ] | [ ] | [ ] | |
 | 05 | Video | [ ] | [ ] | [ ] | n/a | |
@@ -62,14 +62,14 @@ Progress: 2 / 13 steps done (P partly, 02 awaiting manual check).
 - [x] Verification: checked by hand at 390px and 1440px. Header changed to sticky top after feedback that it scrolled away
 
 ### 02. Hero
-- [x] `components/Hero.tsx`, ink bg, asymmetric 12-col layout (copy cols 1 to 6, screenshot cols 7 to 13), screenshot bleeds right 10% at xl, 18% at lg, 12% on mobile
-- [x] H1 Fraunces 300 WONK, display1; lead <= 48ch paper-muted. Line count to confirm by eye at 1440px
+- [x] `components/Hero.tsx`, ink bg, asymmetric 12-col layout (copy cols 1 to 7, screenshot from col 8 sized 48vw so it bleeds off the right edge at every desktop width), 12% bleed on mobile
+- [x] H1 Fraunces 300 WONK, display1, three lines at desktop (display1 cap lowered from 6rem to 5rem in the tokens to make that true); lead <= 48ch paper-muted
 - [x] Primary CTA (`data-hero-cta`, placement hero) + "Watch 90 sec" text link (anchor #video, no arrow, 4px underline offset)
 - [x] Proof chip "7-day score-fit guarantee". Spec said ink-muted text; that fails AA on ink, so paper-muted is used
 - [x] Screenshot `/public/screens/roi-plan.png` is the real Concept Library screen (1138x932). next/image, priority, fetchpriority high, explicit dims, 8px radius, shadow. Resolution is about 1.3x at 1440px; a 2x capture would be sharper
-- [x] GSAP reveal in `components/HeroReveal.tsx`: dynamic import, 80ms stagger from the token, five copy elements then screenshot, about 850ms total, skipped under reduced motion. Ease is power3.out (GSAP core cannot read the cubic-bezier token)
+- [x] GSAP reveal in `components/HeroReveal.tsx`: dynamic import, fromTo with explicit end values, gsap.context revert on cleanup and completion, skipped when the tab is hidden, 1.5s failsafe restores the finished state. Ease is power3.out (GSAP core cannot read the cubic-bezier token). An earlier from() version could stall and hide the screenshot; fixed
 - [x] min-height 88svh on mobile, none on desktop
-- [~] Verification: manual. Check CTA visible without scrolling at 390x844, three-line H1 at 1440px, screenshot bleed, reveal plays once on load. Lighthouse LCP deferred to step 11
+- [x] Verification in Chrome via MCP: CTA above the fold at 390x844, three-line H1 at desktop, real screenshot renders, bleed works. Lighthouse LCP deferred to step 11. Reduced-motion pass pending
 
 ### 03. Problem / ROI comparison
 - [ ] `components/RoiComparison.tsx`, paper bg, H2 + body cols 1 to 5
@@ -151,7 +151,8 @@ Progress: 2 / 13 steps done (P partly, 02 awaiting manual check).
 
 ## Open questions / blockers
 
-- Playwright headless Chromium hangs on page.goto on this machine. Screenshot verification is manual until fixed.
+- Playwright headless Chromium hangs on page.goto on this machine. Visual checks are done through the Claude in Chrome extension instead, plus the dev-only `/preview` route that frames the page at 390 and 1024.
+- Next 16 caches optimized images under `.next/dev/cache/images`. After replacing a file in `public/`, delete that folder or the browser keeps getting the old image.
 - Assets still needed from the founder: design reference screenshots, video poster, captions file. A true diagnostic question screenshot and 2x captures of all screens would improve steps 02 and 04.
 - Current video lives on S3 Singapore: https://wooster-concept-videos.s3.ap-southeast-1.amazonaws.com/Landing/Wooster_Prep_The_Moneyball_of_SAT_updated_06-16-2026_with_captions.mp4. Must move to Vercel Blob or Cloudflare before step 05; captions are burned in, a separate .vtt is still needed.
 - Live OG image is off-brand (blue, sans). Generate a new one in step 11.
@@ -170,3 +171,4 @@ Progress: 2 / 13 steps done (P partly, 02 awaiting manual check).
 | 2026-09-10 | 01 | User checked. Header made sticky. Done. |
 | 2026-09-10 | 02 | Hero, HeroReveal (GSAP), placeholder roi-plan.png. Page assembled with a paper scroll placeholder for step 03. Awaiting manual check. |
 | 2026-09-10 | P/02 | Real app screenshots added by user. Mapped to roi-plan, diagnostic, progress. Hero now uses the real Concept Library image. |
+| 2026-09-10 | 02 | User could not see the screenshot. Two causes: stale Next image cache, and a GSAP from() stall. Both fixed. H1 trimmed to three lines, bleed reworked, /preview route added. Verified in Chrome at 390 and 1920. |

@@ -20,7 +20,7 @@ export const font = {
 
 // Type scale — extremes, not timid steps. rem values; line-height paired.
 export const type = {
-  display1: { size: "clamp(2.75rem, 8vw, 6rem)", lh: 0.95, weight: 300, family: "display" }, // hero H1
+  display1: { size: "clamp(2.75rem, 7vw, 5rem)", lh: 0.95, weight: 300, family: "display" }, // hero H1
   display2: { size: "clamp(2rem, 5vw, 3.5rem)", lh: 1.02, weight: 300, family: "display" },   // section H2
   lead:     { size: "clamp(1.125rem, 1.8vw, 1.375rem)", lh: 1.45, weight: 400, family: "body" },
   body:     { size: "1rem", lh: 1.6, weight: 400, family: "body" },
