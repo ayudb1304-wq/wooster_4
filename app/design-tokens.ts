@@ -26,6 +26,7 @@ export const type = {
   body:     { size: "1rem", lh: 1.6, weight: 400, family: "body" },
   small:    { size: "0.875rem", lh: 1.5, weight: 400, family: "body" },
   stat:     { size: "clamp(2rem, 6vw, 4rem)", lh: 1, weight: 500, family: "mono" },          // "+42" / "1240 → 1390"
+  statRow:  { size: "clamp(1.5rem, 2.2vw, 2rem)", lh: 1, weight: 500, family: "mono" },      // figures inside 56px list rows
   price:    { size: "clamp(2.5rem, 6vw, 4.5rem)", lh: 1, weight: 500, family: "mono" },
 } as const;
 

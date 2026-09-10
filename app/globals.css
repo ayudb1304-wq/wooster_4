@@ -31,6 +31,8 @@
   --text-small--line-height: 1.5;
   --text-stat: clamp(2rem, 6vw, 4rem);
   --text-stat--line-height: 1;
+  --text-stat-row: clamp(1.5rem, 2.2vw, 2rem);
+  --text-stat-row--line-height: 1;
   --text-price: clamp(2.5rem, 6vw, 4.5rem);
   --text-price--line-height: 1;
   --weight-display: 300;
@@ -154,6 +156,8 @@
   --text-small--line-height: var(--text-small--line-height);
   --text-stat: var(--text-stat);
   --text-stat--line-height: var(--text-stat--line-height);
+  --text-stat-row: var(--text-stat-row);
+  --text-stat-row--line-height: var(--text-stat-row--line-height);
   --text-price: var(--text-price);
   --text-price--line-height: var(--text-price--line-height);
 

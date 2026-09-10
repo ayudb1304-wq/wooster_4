@@ -27,7 +27,7 @@ export function RoiComparison() {
                 {chapterOrder.map((concept) => (
                   <li
                     key={concept}
-                    className="flex min-h-14 items-center border-b border-paper-edge font-body-strong text-body"
+                    className="flex h-14 items-center whitespace-nowrap border-b border-paper-edge font-body-strong text-body"
                   >
                     {concept}
                   </li>
@@ -41,21 +41,21 @@ export function RoiComparison() {
                 {roiRows.map((row, i) => (
                   <li
                     key={row.concept}
-                    className="flex min-h-14 items-center justify-between gap-4 border-b border-paper-edge"
+                    className="flex h-14 items-center justify-between gap-4 border-b border-paper-edge"
                     data-roi-row
                     data-roi-index={i}
                     data-chapter-index={chapterOrder.indexOf(row.concept)}
                   >
-                    <span className="font-body-strong text-body">{row.concept}</span>
-                    <span className="flex items-baseline gap-2">
+                    <span className="whitespace-nowrap font-body-strong text-body">{row.concept}</span>
+                    <span className="flex shrink-0 items-baseline gap-2">
                       <span
-                        className="font-mono-figure text-stat text-signal"
+                        className="min-w-[3ch] text-right font-mono-figure text-stat-row text-signal"
                         data-roi-figure
                         data-value={row.projected}
                       >
                         +{row.projected}
                       </span>
-                      <span className="text-small text-ink-muted">projected</span>
+                      <span className="w-[5.5em] text-small text-ink-muted">projected</span>
                     </span>
                   </li>
                 ))}
