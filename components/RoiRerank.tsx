@@ -8,7 +8,7 @@ import { useEffect } from "react";
   Base DOM order is the final ROI order with figures at N, so no-JS and
   reduced-motion visitors see the finished state. With JS and motion allowed:
   1. Rows are reordered into chapter order and figures set to 0 (initial visible state).
-  2. Desktop (pointer, >= 1024px): ScrollTrigger pins the block (start "top 15%",
+  2. Desktop (pointer, >= 1024px): ScrollTrigger pins the whole section (start "top 15%",
      end "+=80%"). Scroll progress 0 to 0.6 drives the FLIP re-order, 0.3 to 1 the
      count-up. Once progress hits 1 the state is frozen; scrolling back does not reverse.
   3. Mobile / touch: no pin. At 40% in view the same timeline plays once at 480ms.
@@ -86,11 +86,12 @@ export function RoiRerank() {
         const trigger = ScrollTrigger.create(
           isDesktop
             ? {
-                trigger: block,
+                trigger: section,
                 start: "top 15%",
                 end: "+=80%",
-                pin: block,
+                pin: section,
                 pinSpacing: true,
+                anticipatePin: 1,
                 onUpdate: (self) => {
                   tl ??= build();
                   if (done) return;

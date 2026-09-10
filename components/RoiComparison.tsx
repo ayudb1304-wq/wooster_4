@@ -8,7 +8,7 @@ export function RoiComparison() {
   return (
     <section className="relative z-10 bg-paper text-ink" data-roi-section>
       <div className="mx-auto grid max-w-[1440px] grid-cols-1 gap-y-12 px-gutter pb-section-y pt-12 lg:grid-cols-12 lg:gap-x-8 lg:pt-0">
-        <div className="lg:col-span-5 lg:col-start-1 lg:pt-section-y">
+        <div className="lg:col-span-5 lg:col-start-1 lg:pt-4">
           <h2 className="text-display2">Generic prep goes chapter by chapter. Your score doesn&apos;t.</h2>
           <p className="mt-6 max-w-[60ch] text-body">
             Most students spend hours on topics worth a few points. Wooster ranks every concept by
