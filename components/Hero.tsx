@@ -9,6 +9,7 @@ export function Hero() {
     <section
       className="relative overflow-hidden bg-ink text-paper min-h-[88svh] lg:min-h-0"
       data-hero
+      data-section-theme="ink"
     >
       <div className="mx-auto grid max-w-[1440px] grid-cols-1 gap-y-12 px-gutter pt-12 pb-16 lg:grid-cols-12 lg:gap-x-8 lg:pt-24 lg:pb-32">
         <div className="lg:col-span-7 lg:col-start-1">

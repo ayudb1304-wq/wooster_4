@@ -12,7 +12,7 @@ export default function LandingPage() {
       <main>
         <Hero />
         <RoiComparison />
-        <section className="bg-paper px-gutter py-section-y" style={{ minHeight: "120vh" }}>
+        <section className="bg-paper px-gutter py-section-y" style={{ minHeight: "120vh" }} data-section-theme="paper">
           <p className="text-small text-ink-muted">Scroll area placeholder (replaced in step 04)</p>
         </section>
       </main>

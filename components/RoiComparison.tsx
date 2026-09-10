@@ -6,7 +6,7 @@ import { RoiRerank } from "@/components/RoiRerank";
 // hero was removed at the founder's request; the section starts below the hero.
 export function RoiComparison() {
   return (
-    <section className="relative z-10 bg-paper text-ink" data-roi-section>
+    <section className="relative z-10 bg-paper text-ink" data-roi-section data-section-theme="paper">
       <div className="mx-auto grid max-w-[1440px] grid-cols-1 gap-y-12 px-gutter py-section-y lg:grid-cols-12 lg:gap-x-8">
         <div className="lg:col-span-5 lg:col-start-1">
           <h2 className="text-display2">Generic prep goes chapter by chapter. Your score doesn&apos;t.</h2>
