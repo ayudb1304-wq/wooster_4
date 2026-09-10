@@ -10,7 +10,7 @@ import { cn } from "cn";
   Every size is at least 48px tall (tap target).
 */
 const buttonVariants = cva(
-  "group/button inline-flex shrink-0 items-center justify-center gap-2 whitespace-nowrap rounded-button border font-body-strong text-body leading-none transition-colors duration-fast ease-out outline-none select-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-signal disabled:pointer-events-none disabled:opacity-50 min-h-tap px-6",
+  "group/button inline-flex shrink-0 items-center justify-center gap-2 whitespace-nowrap rounded-button border font-body-strong leading-none transition-colors duration-fast ease-out outline-none select-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-signal disabled:pointer-events-none disabled:opacity-50",
   {
     variants: {
       variant: {
@@ -25,9 +25,9 @@ const buttonVariants = cva(
       size: {
         // sm is for desktop-only placements (header). Mobile targets stay at 48px.
         sm: "min-h-10 px-4 text-small",
-        default: "min-h-tap",
-        lg: "min-h-14 px-8",
-        icon: "min-h-tap min-w-tap px-0 size-tap",
+        default: "min-h-tap px-6 text-body",
+        lg: "min-h-14 px-8 text-body",
+        icon: "min-h-tap min-w-tap px-0 size-tap text-body",
       },
       full: {
         true: "w-full",
