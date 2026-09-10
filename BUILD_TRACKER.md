@@ -21,11 +21,11 @@ Last updated: 2026-09-10 (afternoon)
 | 06 | Proof | [x] | [ ] | [x] | n/a | Signed off implicitly. 390 check pending. |
 | 07 | Testimonials | [x] | [ ] | [x] | [ ] | Signed off implicitly. 390 and reduced-motion checks pending. |
 | 08 | Pricing | [x] | [ ] | [x] | n/a | Card layout signed off. 390 check pending. |
-| 09 | Guarantee + FAQ | [~] | [ ] | [x] | n/a | Built to the founder reference. Checked at desktop. Awaiting sign-off. |
-| 10 | Final CTA + footer + page assembly | [ ] | [ ] | [ ] | n/a | |
+| 09 | Guarantee + FAQ | [x] | [ ] | [x] | n/a | Signed off. 390 check and schema validation pending. |
+| 10 | Final CTA + footer + page assembly | [~] | [ ] | [x] | n/a | Built, page assembled in final order, no placeholders. Awaiting sign-off. |
 | 11 | Hardening: analytics, schema, perf, a11y, metadata | [ ] | [ ] | [ ] | [ ] | |
 
-Progress: 9 / 13 steps done (P partly, 09 awaiting sign-off).
+Progress: 10 / 13 steps done (P partly, 10 awaiting sign-off).
 
 ## Detailed checklist
 
@@ -127,10 +127,10 @@ Progress: 9 / 13 steps done (P partly, 09 awaiting sign-off).
 - [~] Verification: desktop checked with one item open and toggling confirmed. JSON-LD present in the HTML; run it through the Schema.org validator in step 11. 390 check pending
 
 ### 10. Final CTA + footer + page assembly
-- [ ] `components/FinalCta.tsx`: display1 H2 cols 1 to 9, primary button only
-- [ ] `components/Footer.tsx`: wordmark, Privacy/Terms/Disclaimer links, contact email, College Board line
-- [ ] `app/(landing)/page.tsx` assembled in fixed section order, one H1, H2 per section, H3 testimonials
-- [ ] Verification: full page screenshots; axe clean
+- [x] `components/FinalCta.tsx`: display1 H2 cols 1 to 9, primary button only (`data-final-cta`, placement final), ink with dots
+- [x] `components/Footer.tsx`: ink-deep, spacious by founder request. Wordmark large on its own column, Privacy/Terms/Disclaimer stacked as underlined links (routes /privacy, /terms, /disclaimer do not exist yet), mailto contact, College Board line alone under a hairline. No social icons, no added copy
+- [x] `app/(landing)/page.tsx` assembled in the fixed order with the last placeholder removed. Verified: one H1, seven H2s in order, H3 for testimonials (plus H3s from the gallery panels and the accordion headers)
+- [~] Verification: desktop checked. Full-page 390 pass and axe run to do in step 11
 
 ### 11. Hardening
 - [ ] `lib/analytics.ts` with `track(event, props)`; events wired: diagnostic_start (placement prop), video_play, pricing_view, checkout_start, purchase
@@ -182,6 +182,7 @@ Progress: 9 / 13 steps done (P partly, 09 awaiting sign-off).
 | 2026-09-10 | 02 | User asked for a visible right edge on the hero image. Bleed removed, shadow token deepened (0 24px 64px -8px rgba(2,6,16,0.7)). |
 | 2026-09-10 | 01 | Header: translucent blur on scroll, smaller CTA, and palette that follows the section beneath (ink or paper). Sections tagged with data-section-theme. |
 | 2026-09-10 | 08 | Pricing built and mounted. |
+| 2026-09-10 | 10 | Final CTA and footer built, page assembled in final order. |
 | 2026-09-10 | 09 | Guarantee + FAQ built as a split panel per the founder screenshot, accordion retokened, FAQ JSON-LD. Questions fixed to one line. |
 | 2026-09-10 | 08 | Pricing rebuilt as a card per the founder screenshot: inner check list, price beside a pill CTA. |
 | 2026-09-10 | 07/04 | Founder supplied two 21st.dev components. Circular Testimonials replaces the Embla carousel; Elastic Gallery replaces the three-column screenshots in How it works. Both retokened, Framer and react-icons swapped for CSS and lucide. |
