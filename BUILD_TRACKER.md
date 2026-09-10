@@ -62,7 +62,7 @@ Progress: 3 / 13 steps done (P partly, 03 awaiting motion check).
 - [x] Verification: checked by hand at 390px and 1440px. Header changed to sticky top after feedback that it scrolled away
 
 ### 02. Hero
-- [x] `components/Hero.tsx`, ink bg, asymmetric 12-col layout (copy cols 1 to 7, screenshot from col 8 sized 48vw so it bleeds off the right edge at every desktop width), 12% bleed on mobile
+- [x] `components/Hero.tsx`, ink bg, asymmetric 12-col layout (copy cols 1 to 7, screenshot cols 8 to 12). The spec bleed off the right edge was removed at the founder request (it read as misaligned); the image now ends at the page edge with a deeper screenshot shadow so the edge is visible
 - [x] H1 Fraunces 300 WONK, display1, three lines at desktop (display1 cap lowered from 6rem to 5rem in the tokens to make that true); lead <= 48ch paper-muted
 - [x] Primary CTA (`data-hero-cta`, placement hero) + "Watch 90 sec" text link (anchor #video, no arrow, 4px underline offset)
 - [x] Proof chip "7-day score-fit guarantee". Spec said ink-muted text; that fails AA on ink, so paper-muted is used
@@ -173,6 +173,7 @@ Progress: 3 / 13 steps done (P partly, 03 awaiting motion check).
 | 2026-09-10 | 02 | Hero, HeroReveal (GSAP), placeholder roi-plan.png. Page assembled with a paper scroll placeholder for step 03. Awaiting manual check. |
 | 2026-09-10 | P/02 | Real app screenshots added by user. Mapped to roi-plan, diagnostic, progress. Hero now uses the real Concept Library image. |
 | 2026-09-10 | 03 | ROI comparison built with content/roi.ts, RoiComparison, RoiRerank. Mounted after hero. Layout verified, motion pending a visible tab. |
+| 2026-09-10 | 02 | User asked for a visible right edge on the hero image. Bleed removed, shadow token deepened (0 24px 64px -8px rgba(2,6,16,0.7)). |
 | 2026-09-10 | 03 | User asked to remove the overlap into the hero. Removed. Page has no grid-breaking moment now. |
 | 2026-09-10 | 03 | User flagged the pin: only the lists block pinned (headline scrolled away, block shifted 30px). Now the whole section pins. Headline levelled with the lists. |
 | 2026-09-10 | 03 | User flagged misalignment. Rows fixed to 56px, figures moved to a new statRow token, lists now line up. Verified at desktop and 390. |

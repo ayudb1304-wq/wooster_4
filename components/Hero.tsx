@@ -43,7 +43,7 @@ export function Hero() {
         </div>
 
         <div
-          className="relative -mr-[12%] self-center lg:col-span-5 lg:col-start-8 lg:w-[48vw] lg:max-w-none"
+          className="relative self-center lg:col-span-5 lg:col-start-8"
           data-hero-reveal="screenshot"
         >
           <Image
@@ -53,7 +53,7 @@ export function Hero() {
             height={932}
             priority
             fetchPriority="high"
-            sizes="(min-width: 1024px) 60vw, 112vw"
+            sizes="(min-width: 1024px) 42vw, 100vw"
             className="h-auto w-full rounded-screenshot shadow-screenshot"
           />
         </div>

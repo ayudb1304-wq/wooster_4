@@ -41,7 +41,7 @@ export const space = {
 export const radius = { button: "4px", input: "4px", screenshot: "8px", card: "0px" } as const;
 
 export const shadow = {
-  screenshot: "0 24px 60px -24px rgba(10, 21, 40, 0.45)", // the only shadow on the page
+  screenshot: "0 24px 64px -8px rgba(2, 6, 16, 0.7)", // the only shadow on the page. Enough spread to show on the sides
 } as const;
 
 export const tap = { minHeight: "48px", gap: "8px" } as const;

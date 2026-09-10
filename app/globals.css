@@ -61,7 +61,7 @@
   --radius-card: 0px;
 
   /* Shadow: the only shadow on the page */
-  --shadow-screenshot: 0 24px 60px -24px rgba(10, 21, 40, 0.45);
+  --shadow-screenshot: 0 24px 64px -8px rgba(2, 6, 16, 0.7);
 
   /* Tap targets */
   --tap-min-height: 48px;
