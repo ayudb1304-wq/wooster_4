@@ -83,7 +83,7 @@ Progress: 5 / 13 steps done (P partly, 05 awaiting sign-off).
 
 ### 04. How it works
 - [x] `components/HowItWorks.tsx`, id `how-it-works`, paper bg, data-section-theme paper
-- [x] Bento grid: step 1 tall at left (cols 1 to 5, two rows), steps 2 and 3 stacked right (cols 6 to 13), each as text beside image. Single column on mobile
+- [x] Layout changed at founder request (bento looked misaligned): three equal columns, text blocks share a min height, every screenshot cropped to the same 4:3 frame from the top so all three align on the same lines. No borders or card backgrounds. Single column on mobile. 21st.dev galleries were checked but all depend on Framer Motion and hover effects, both banned
 - [x] Each step: Fraunces 300 display2 numeral in ink-muted, name body 600 (h3 with sr-only step label), description, lazy screenshot with dims, 8px radius, screenshot shadow. "[25] minutes" rendered as 25; confirm with founder
 - [x] `screenshot-enter` utility in globals.css: animation-timeline view(), entry 0% to 40%, opacity 0.6 to 1, wrapped in @supports with opacity 1 base. Global reduced-motion rule disables it
 - [x] No icons, no hover effects
@@ -153,6 +153,8 @@ Progress: 5 / 13 steps done (P partly, 05 awaiting sign-off).
 
 - Playwright headless Chromium hangs on page.goto on this machine. Visual checks are done through the Claude in Chrome extension instead, plus the dev-only `/preview` route that frames the page at 390 and 1024.
 - The Chrome tab used for automated checks reports document.hidden = true (its window is in the background). Animation frames do not run there, so GSAP and ScrollTrigger motion cannot be verified through it. Bring that window to the front, or check motion by hand.
+- Subtle section textures added at founder request (2026-09-10): `components/SectionBackground.tsx` with `pattern-dots` (paper dots at 7% on ink sections) and `pattern-grid` (ink grid at 5% on paper sections), edge-masked by `pattern-fade`. Rebuilt in tokens after the MagicUI patterns on 21st.dev, no library. Every new section should include it and be `relative overflow-hidden` with its content wrapper `relative`.
+- Turbopack sometimes fails to pick up new Tailwind classes from a rewritten file. If a class is missing from the served CSS, restart `npm run dev -- -p 3002`.
 - Tailwind v4 has no named duration namespace, so `duration-fast` style classes do nothing. Use `duration-(--duration-fast)`, `duration-(--duration-base)`, `duration-(--duration-reveal)`. Fixed across all components 2026-09-10.
 - Next 16 caches optimized images under `.next/dev/cache/images`. After replacing a file in `public/`, delete that folder or the browser keeps getting the old image.
 - Assets still needed from the founder: design reference screenshots, video poster, captions file. A true diagnostic question screenshot and 2x captures of all screens would improve steps 02 and 04.
@@ -178,6 +180,7 @@ Progress: 5 / 13 steps done (P partly, 05 awaiting sign-off).
 | 2026-09-10 | 03 | ROI comparison built with content/roi.ts, RoiComparison, RoiRerank. Mounted after hero. Layout verified, motion pending a visible tab. |
 | 2026-09-10 | 02 | User asked for a visible right edge on the hero image. Bleed removed, shadow token deepened (0 24px 64px -8px rgba(2,6,16,0.7)). |
 | 2026-09-10 | 01 | Header: translucent blur on scroll, smaller CTA, and palette that follows the section beneath (ink or paper). Sections tagged with data-section-theme. |
+| 2026-09-10 | 04 | How it works rebuilt as three aligned columns after user feedback. Subtle dot and grid backgrounds added to hero, ROI, how it works, video. Dev server restarted to fix stale Tailwind scan. |
 | 2026-09-10 | 05 | Video section built with the founder-supplied mp4 served from public/video in dev, poster cut at 3.5s, placeholder vtt. Verified click-to-play wiring in Chrome. |
 | 2026-09-10 | 04 | How it works built and mounted. Bento cells top-aligned after a first pass showed bottom-anchored images. |
 | 2026-09-10 | 01 | Header theme change made smooth: logos crossfade, colours transition over 720ms. Found and fixed that no duration class had been applying anywhere (Tailwind v4). |
