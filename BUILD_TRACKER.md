@@ -13,8 +13,8 @@ Last updated: 2026-09-10 (afternoon)
 |---|------|--------|----------------|-----------------|----------------|-------|
 | P | Pre-work (repo scaffold, docs in place, references, tooling) | [~] | n/a | n/a | n/a | Code side done. Still need: reference screenshots, product screenshots, video poster + vtt, MCP plugins |
 | 00 | Setup: fonts, globals.css, tailwind, shadcn, layouts, shot script | [x] | [x] | [x] | n/a | Verified by hand on /scratch. Scratch page deleted. |
-| 01 | Header + sticky mobile CTA | [~] | [ ] | [ ] | [ ] | Built, compiles, serves. Awaiting manual check. Hero placeholder in page.tsx until step 02. |
-| 02 | Hero | [ ] | [ ] | [ ] | [ ] | |
+| 01 | Header + sticky mobile CTA | [x] | [x] | [x] | [ ] | Checked by hand. Header made sticky after user feedback. Reduced-motion pass still to do. |
+| 02 | Hero | [~] | [ ] | [ ] | [ ] | Built with a generated placeholder screenshot. Awaiting manual check. |
 | 03 | Problem / ROI comparison | [ ] | [ ] | [ ] | [ ] | |
 | 04 | How it works | [ ] | [ ] | [ ] | [ ] | |
 | 05 | Video | [ ] | [ ] | [ ] | n/a | |
@@ -25,7 +25,7 @@ Last updated: 2026-09-10 (afternoon)
 | 10 | Final CTA + footer + page assembly | [ ] | [ ] | [ ] | n/a | |
 | 11 | Hardening: analytics, schema, perf, a11y, metadata | [ ] | [ ] | [ ] | [ ] | |
 
-Progress: 1 / 13 steps done (P partly, 01 awaiting manual check).
+Progress: 2 / 13 steps done (P partly, 02 awaiting manual check).
 
 ## Detailed checklist
 
@@ -59,17 +59,17 @@ Progress: 1 / 13 steps done (P partly, 01 awaiting manual check).
 - [x] `components/StickyCta.tsx`: watches `[data-hero-cta]`, hides when `[data-final-cta]` is in view, hidden at >= 1024px, safe-area padding
 - [x] Slide-up 320ms token ease, instant under reduced motion (global kill switch)
 - [x] All targets >= 48px, signal focus rings
-- [~] Verification: manual. Check at 390px: bar absent at top, slides up after the placeholder hero scrolls out. Check at 1440px: no bar, three nav items, hairline appears after 8px scroll
+- [x] Verification: checked by hand at 390px and 1440px. Header changed to sticky top after feedback that it scrolled away
 
 ### 02. Hero
-- [ ] `components/Hero.tsx`, ink bg, asymmetric 12-col layout, screenshot bleeds right ~10%
-- [ ] H1 Fraunces 300 WONK, display1, max 3 lines; lead <= 48ch paper-muted
-- [ ] Primary CTA + "Watch 90 sec" text link (anchor #video, no arrow)
-- [ ] Proof chip "7-day score-fit guarantee"
-- [ ] Screenshot `/public/screens/roi-plan.png`, priority, fetchpriority high, explicit dims, 8px radius, shadow
-- [ ] GSAP reveal timeline <= 900ms, dynamic import in client island, skipped under reduced motion
-- [ ] min-height 88svh on mobile
-- [ ] Verification: screenshots, CTA visible without scrolling at 390x844, Lighthouse mobile LCP reported
+- [x] `components/Hero.tsx`, ink bg, asymmetric 12-col layout (copy cols 1 to 6, screenshot cols 7 to 13), screenshot bleeds right 10% at xl, 18% at lg, 12% on mobile
+- [x] H1 Fraunces 300 WONK, display1; lead <= 48ch paper-muted. Line count to confirm by eye at 1440px
+- [x] Primary CTA (`data-hero-cta`, placement hero) + "Watch 90 sec" text link (anchor #video, no arrow, 4px underline offset)
+- [x] Proof chip "7-day score-fit guarantee". Spec said ink-muted text; that fails AA on ink, so paper-muted is used
+- [~] Screenshot `/public/screens/roi-plan.png` is a generated PLACEHOLDER (1600x1100, Pillow). next/image, priority, fetchpriority high, explicit dims, 8px radius, shadow. Replace with the real app screenshot
+- [x] GSAP reveal in `components/HeroReveal.tsx`: dynamic import, 80ms stagger from the token, five copy elements then screenshot, about 850ms total, skipped under reduced motion. Ease is power3.out (GSAP core cannot read the cubic-bezier token)
+- [x] min-height 88svh on mobile, none on desktop
+- [~] Verification: manual. Check CTA visible without scrolling at 390x844, three-line H1 at 1440px, screenshot bleed, reveal plays once on load. Lighthouse LCP deferred to step 11
 
 ### 03. Problem / ROI comparison
 - [ ] `components/RoiComparison.tsx`, paper bg, H2 + body cols 1 to 5
@@ -167,3 +167,5 @@ Progress: 1 / 13 steps done (P partly, 01 awaiting manual check).
 | 2026-09-10 | 00 | Verified by hand. Scratch page deleted. Done. |
 | 2026-09-10 | 01 | Header, HeaderRule, StickyCta built. Page assembled with a temporary hero placeholder. Awaiting manual check. |
 | 2026-09-10 | 01 | Pulled the real logo from woosterprep.com, made transparent paper and ink PNGs, used in header via Logo component. |
+| 2026-09-10 | 01 | User checked. Header made sticky. Done. |
+| 2026-09-10 | 02 | Hero, HeroReveal (GSAP), placeholder roi-plan.png. Page assembled with a paper scroll placeholder for step 03. Awaiting manual check. |

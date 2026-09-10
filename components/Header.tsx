@@ -7,7 +7,7 @@ import { Logo } from "@/components/Logo";
 export function Header() {
   return (
     <header
-      className="relative z-40 bg-ink-deep text-paper"
+      className="sticky top-0 z-40 bg-ink-deep text-paper"
       data-site-header
     >
       <div className="mx-auto flex h-14 max-w-[1440px] items-center justify-between px-gutter lg:h-16">
