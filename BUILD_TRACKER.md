@@ -153,7 +153,7 @@ Progress: 11 / 13 steps done (P partly, 11 scoped to the phone pass).
 
 - Playwright headless Chromium hangs on page.goto on this machine. Visual checks are done through the Claude in Chrome extension instead, plus the dev-only `/preview` route that frames the page at 390 and 1024.
 - The Chrome tab used for automated checks reports document.hidden = true (its window is in the background). Animation frames do not run there, so GSAP and ScrollTrigger motion cannot be verified through it. Bring that window to the front, or check motion by hand.
-- Repo pushed to https://github.com/ayudb1304-wq/wooster_4 on `main` (2026-09-10). Video and .env.local are git-ignored: on Vercel, upload the mp4 to Vercel Blob and set NEXT_PUBLIC_VIDEO_URL; do NOT set NEXT_PUBLIC_SAMPLE_TESTIMONIALS in production.
+- Repo pushed to https://github.com/ayudb1304-wq/wooster_4 on `main` (2026-09-10). Video and .env.local are git-ignored: on Vercel, upload the mp4 to Vercel Blob and set NEXT_PUBLIC_VIDEO_URL; NEXT_PUBLIC_SAMPLE_TESTIMONIALS=true is committed in `.env` by founder decision (2026-09-10) so the sample testimonials show in production until real ones exist. This overrides the "no sample text in production" rule; the names read "Sample Student A/B/C" and the photos are Unsplash stock. Flip it to false when real entries land.
 - Lottie (founder request 2026-09-10): `@lottiefiles/dotlottie-react` added. `components/LottieAccent.tsx` loads the player only when the block is near the viewport (IntersectionObserver plus a scroll bounds fallback), plays in view, pauses out of view, first frame only under reduced motion. `public/lottie/reported.json` is a hand-made placeholder (three pulsing signal dots). Replace it with a LottieFiles pick at the same path; `.lottie` files also work.
 - Subtle section textures added at founder request (2026-09-10): `components/SectionBackground.tsx` with `pattern-dots` (paper dots at 7% on ink sections) and `pattern-grid` (ink grid at 5% on paper sections), edge-masked by `pattern-fade`. Rebuilt in tokens after the MagicUI patterns on 21st.dev, no library. Every new section should include it and be `relative overflow-hidden` with its content wrapper `relative`.
 - Turbopack sometimes fails to pick up new Tailwind classes from a rewritten file. If a class is missing from the served CSS, restart `npm run dev -- -p 3002`.
@@ -183,6 +183,7 @@ Progress: 11 / 13 steps done (P partly, 11 scoped to the phone pass).
 | 2026-09-10 | 02 | User asked for a visible right edge on the hero image. Bleed removed, shadow token deepened (0 24px 64px -8px rgba(2,6,16,0.7)). |
 | 2026-09-10 | 01 | Header: translucent blur on scroll, smaller CTA, and palette that follows the section beneath (ink or paper). Sections tagged with data-section-theme. |
 | 2026-09-10 | 08 | Pricing built and mounted. |
+| 2026-09-10 | 07 | Founder asked for the sample testimonials to ship. Committed .env with the flag on. |
 | 2026-09-10 | 11 | Founder cut analytics. Phone pass at 390: tap targets fixed, testimonial stack offset tightened. Pushed to GitHub. |
 | 2026-09-10 | 10 | Final CTA and footer built, page assembled in final order. |
 | 2026-09-10 | 09 | Guarantee + FAQ built as a split panel per the founder screenshot, accordion retokened, FAQ JSON-LD. Questions fixed to one line. |
