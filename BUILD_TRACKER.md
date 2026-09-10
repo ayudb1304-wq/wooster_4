@@ -15,7 +15,7 @@ Last updated: 2026-09-10 (afternoon)
 | 00 | Setup: fonts, globals.css, tailwind, shadcn, layouts, shot script | [x] | [x] | [x] | n/a | Verified by hand on /scratch. Scratch page deleted. |
 | 01 | Header + sticky mobile CTA | [x] | [x] | [x] | [ ] | Checked by hand. Header made sticky after user feedback. Reduced-motion pass still to do. |
 | 02 | Hero | [x] | [x] | [x] | [ ] | User signed off. Reduced-motion pass still to do. |
-| 03 | Problem / ROI comparison | [~] | [ ] | [x] | [ ] | Layout verified at desktop. Scroll re-rank needs a visible tab to test; user to check. |
+| 03 | Problem / ROI comparison | [~] | [x] | [x] | [ ] | Alignment fixed after user feedback. Re-rank seen completing at desktop. Awaiting user sign-off and reduced-motion pass. |
 | 04 | How it works | [ ] | [ ] | [ ] | [ ] | |
 | 05 | Video | [ ] | [ ] | [ ] | n/a | |
 | 06 | Proof | [ ] | [ ] | [ ] | n/a | |
@@ -76,10 +76,10 @@ Progress: 3 / 13 steps done (P partly, 03 awaiting motion check).
 - [x] Two lists cols 6 to 13 in a paper block breaking upward 64px into the hero
 - [x] Chapter order list (6 rows) and Wooster ROI order list with mono stat figures in signal + "projected"
 - [x] Figure label "Projected gain, from your diagnostic"
-- [x] Rows: hairline rules, min 56px tall (stat-size figures make the right list rows a little taller), no cards
-- [~] `components/RoiRerank.tsx`: GSAP + ScrollTrigger + Flip. Follows motion-spec.md rather than the prompt: desktop pins the block (top 15%, +80%) and scroll progress drives FLIP (0 to 0.6) and count-up (0.3 to 1), frozen once complete; touch or < 1024px plays once at 480ms at 40% in view. Fires `roi_rerank_complete`. Motion not yet seen running (automated tab is hidden, no animation frames)
+- [x] Rows: hairline rules, exactly 56px in both lists so the rules line up, names never wrap, figures right-aligned on a fixed width. New token `statRow` (clamp 1.5rem to 2rem) for figures inside rows; the full `stat` size broke the rows
+- [x] `components/RoiRerank.tsx`: GSAP + ScrollTrigger + Flip. Follows motion-spec.md rather than the prompt: desktop pins the block (top 15%, +80%) and scroll progress drives FLIP (0 to 0.6) and count-up (0.3 to 1), frozen once complete; touch or < 1024px plays once at 480ms at 40% in view. Fires `roi_rerank_complete`. Seen completing at desktop once the tab was visible
 - [x] Base DOM order is the final ROI order with figures at N; JS rearranges to chapter order only when motion is allowed
-- [~] Verification: initial state (chapter order, +0 figures, "projected" on every row) confirmed at desktop. Needs: user to scroll through it in a visible tab, 390px check, reduced-motion check
+- [~] Verification: initial state and final state confirmed at desktop, stacked layout confirmed at 390. Reduced-motion check pending
 
 ### 04. How it works
 - [ ] `components/HowItWorks.tsx`, id `how-it-works`, paper bg
@@ -173,4 +173,5 @@ Progress: 3 / 13 steps done (P partly, 03 awaiting motion check).
 | 2026-09-10 | 02 | Hero, HeroReveal (GSAP), placeholder roi-plan.png. Page assembled with a paper scroll placeholder for step 03. Awaiting manual check. |
 | 2026-09-10 | P/02 | Real app screenshots added by user. Mapped to roi-plan, diagnostic, progress. Hero now uses the real Concept Library image. |
 | 2026-09-10 | 03 | ROI comparison built with content/roi.ts, RoiComparison, RoiRerank. Mounted after hero. Layout verified, motion pending a visible tab. |
+| 2026-09-10 | 03 | User flagged misalignment. Rows fixed to 56px, figures moved to a new statRow token, lists now line up. Verified at desktop and 390. |
 | 2026-09-10 | 02 | User could not see the screenshot. Two causes: stale Next image cache, and a GSAP from() stall. Both fixed. H1 trimmed to three lines, bleed reworked, /preview route added. Verified in Chrome at 390 and 1920. |
