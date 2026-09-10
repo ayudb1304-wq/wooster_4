@@ -153,6 +153,7 @@ Progress: 3 / 13 steps done (P partly, 03 awaiting motion check).
 
 - Playwright headless Chromium hangs on page.goto on this machine. Visual checks are done through the Claude in Chrome extension instead, plus the dev-only `/preview` route that frames the page at 390 and 1024.
 - The Chrome tab used for automated checks reports document.hidden = true (its window is in the background). Animation frames do not run there, so GSAP and ScrollTrigger motion cannot be verified through it. Bring that window to the front, or check motion by hand.
+- Tailwind v4 has no named duration namespace, so `duration-fast` style classes do nothing. Use `duration-(--duration-fast)`, `duration-(--duration-base)`, `duration-(--duration-reveal)`. Fixed across all components 2026-09-10.
 - Next 16 caches optimized images under `.next/dev/cache/images`. After replacing a file in `public/`, delete that folder or the browser keeps getting the old image.
 - Assets still needed from the founder: design reference screenshots, video poster, captions file. A true diagnostic question screenshot and 2x captures of all screens would improve steps 02 and 04.
 - Current video lives on S3 Singapore: https://wooster-concept-videos.s3.ap-southeast-1.amazonaws.com/Landing/Wooster_Prep_The_Moneyball_of_SAT_updated_06-16-2026_with_captions.mp4. Must move to Vercel Blob or Cloudflare before step 05; captions are burned in, a separate .vtt is still needed.
@@ -175,6 +176,7 @@ Progress: 3 / 13 steps done (P partly, 03 awaiting motion check).
 | 2026-09-10 | 03 | ROI comparison built with content/roi.ts, RoiComparison, RoiRerank. Mounted after hero. Layout verified, motion pending a visible tab. |
 | 2026-09-10 | 02 | User asked for a visible right edge on the hero image. Bleed removed, shadow token deepened (0 24px 64px -8px rgba(2,6,16,0.7)). |
 | 2026-09-10 | 01 | Header: translucent blur on scroll, smaller CTA, and palette that follows the section beneath (ink or paper). Sections tagged with data-section-theme. |
+| 2026-09-10 | 01 | Header theme change made smooth: logos crossfade, colours transition over 720ms. Found and fixed that no duration class had been applying anywhere (Tailwind v4). |
 | 2026-09-10 | 02 | User then asked for the bleed back with a soft fade. Bleed restored, ink gradient fade added on the right of the hero. |
 | 2026-09-10 | 03 | User asked to remove the overlap into the hero. Removed. Page has no grid-breaking moment now. |
 | 2026-09-10 | 03 | User flagged the pin: only the lists block pinned (headline scrolled away, block shifted 30px). Now the whole section pins. Headline levelled with the lists. |
