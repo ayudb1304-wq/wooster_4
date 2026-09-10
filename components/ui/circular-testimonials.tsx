@@ -30,6 +30,8 @@ interface CircularTestimonialsProps {
 }
 
 function calculateGap(width: number) {
+  // Narrow stacks (phones) get a tighter offset so the side photos stay inside the frame.
+  if (width < 560) return Math.max(16, Math.round(width * 0.08));
   const minWidth = 1024;
   const maxWidth = 1456;
   const minGap = 60;

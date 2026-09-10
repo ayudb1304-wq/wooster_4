@@ -22,10 +22,10 @@ Last updated: 2026-09-10 (afternoon)
 | 07 | Testimonials | [x] | [ ] | [x] | [ ] | Signed off implicitly. 390 and reduced-motion checks pending. |
 | 08 | Pricing | [x] | [ ] | [x] | n/a | Card layout signed off. 390 check pending. |
 | 09 | Guarantee + FAQ | [x] | [ ] | [x] | n/a | Signed off. 390 check and schema validation pending. |
-| 10 | Final CTA + footer + page assembly | [~] | [ ] | [x] | n/a | Built, page assembled in final order, no placeholders. Awaiting sign-off. |
-| 11 | Hardening: analytics, schema, perf, a11y, metadata | [ ] | [ ] | [ ] | [ ] | |
+| 10 | Final CTA + footer + page assembly | [x] | [x] | [x] | n/a | Signed off. Footer links 48px after the phone pass. |
+| 11 | Hardening: analytics, schema, perf, a11y, metadata | [~] | [x] | [ ] | [ ] | Scope cut by founder 2026-09-10: no analytics for now, phone check only. Phone pass done at 390 (no overflow, all tap targets 48px+, every section stacks). Motion on phone (mobile re-rank, sticky bar) to be confirmed on a real device. |
 
-Progress: 10 / 13 steps done (P partly, 10 awaiting sign-off).
+Progress: 11 / 13 steps done (P partly, 11 scoped to the phone pass).
 
 ## Detailed checklist
 
@@ -133,12 +133,12 @@ Progress: 10 / 13 steps done (P partly, 10 awaiting sign-off).
 - [~] Verification: desktop checked. Full-page 390 pass and axe run to do in step 11
 
 ### 11. Hardening
-- [ ] `lib/analytics.ts` with `track(event, props)`; events wired: diagnostic_start (placement prop), video_play, pricing_view, checkout_start, purchase
+- [ ] DEFERRED by founder: no analytics for now. The hooks exist already (data-placement on every CTA, window events video_play, pricing_view, roi_rerank_complete), so wiring a provider later is a small task
 - [ ] Schema: Product + Offer, Organization, FAQPage validated
 - [ ] Lighthouse mobile: LCP < 2.5s, INP < 200ms, CLS < 0.1; GSAP/Lenis landing route only; fonts two weights max
 - [ ] axe clean, keyboard walk-through, focus order, reduced-motion pass on every section
 - [ ] Metadata preserved, sitemap.xml, robots index,follow
-- [ ] Verification: full page screenshots normal and reduced motion; Lighthouse and axe reports attached
+- [~] Phone pass 2026-09-10 at 390 via /preview: document width inside the viewport, no horizontal scroll; hero CTA in the first screen; sticky bar present; gallery in column mode; pricing card, FAQ, footer all stack; all links and buttons at least 48px (footer, pricing guarantee link and footer logo raised). Testimonial photo stack offset tightened on narrow screens. Lighthouse, axe and reduced-motion passes still open
 
 ## Metrics (fill in at step 02 and step 11)
 
@@ -153,6 +153,7 @@ Progress: 10 / 13 steps done (P partly, 10 awaiting sign-off).
 
 - Playwright headless Chromium hangs on page.goto on this machine. Visual checks are done through the Claude in Chrome extension instead, plus the dev-only `/preview` route that frames the page at 390 and 1024.
 - The Chrome tab used for automated checks reports document.hidden = true (its window is in the background). Animation frames do not run there, so GSAP and ScrollTrigger motion cannot be verified through it. Bring that window to the front, or check motion by hand.
+- Repo pushed to https://github.com/ayudb1304-wq/wooster_4 on `main` (2026-09-10). Video and .env.local are git-ignored: on Vercel, upload the mp4 to Vercel Blob and set NEXT_PUBLIC_VIDEO_URL; do NOT set NEXT_PUBLIC_SAMPLE_TESTIMONIALS in production.
 - Lottie (founder request 2026-09-10): `@lottiefiles/dotlottie-react` added. `components/LottieAccent.tsx` loads the player only when the block is near the viewport (IntersectionObserver plus a scroll bounds fallback), plays in view, pauses out of view, first frame only under reduced motion. `public/lottie/reported.json` is a hand-made placeholder (three pulsing signal dots). Replace it with a LottieFiles pick at the same path; `.lottie` files also work.
 - Subtle section textures added at founder request (2026-09-10): `components/SectionBackground.tsx` with `pattern-dots` (paper dots at 7% on ink sections) and `pattern-grid` (ink grid at 5% on paper sections), edge-masked by `pattern-fade`. Rebuilt in tokens after the MagicUI patterns on 21st.dev, no library. Every new section should include it and be `relative overflow-hidden` with its content wrapper `relative`.
 - Turbopack sometimes fails to pick up new Tailwind classes from a rewritten file. If a class is missing from the served CSS, restart `npm run dev -- -p 3002`.
@@ -182,6 +183,7 @@ Progress: 10 / 13 steps done (P partly, 10 awaiting sign-off).
 | 2026-09-10 | 02 | User asked for a visible right edge on the hero image. Bleed removed, shadow token deepened (0 24px 64px -8px rgba(2,6,16,0.7)). |
 | 2026-09-10 | 01 | Header: translucent blur on scroll, smaller CTA, and palette that follows the section beneath (ink or paper). Sections tagged with data-section-theme. |
 | 2026-09-10 | 08 | Pricing built and mounted. |
+| 2026-09-10 | 11 | Founder cut analytics. Phone pass at 390: tap targets fixed, testimonial stack offset tightened. Pushed to GitHub. |
 | 2026-09-10 | 10 | Final CTA and footer built, page assembled in final order. |
 | 2026-09-10 | 09 | Guarantee + FAQ built as a split panel per the founder screenshot, accordion retokened, FAQ JSON-LD. Questions fixed to one line. |
 | 2026-09-10 | 08 | Pricing rebuilt as a card per the founder screenshot: inner check list, price beside a pill CTA. |
