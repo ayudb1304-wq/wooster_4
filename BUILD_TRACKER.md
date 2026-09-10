@@ -19,13 +19,13 @@ Last updated: 2026-09-10 (afternoon)
 | 04 | How it works | [x] | [x] | [x] | [ ] | Signed off implicitly (user moved on). Reduced-motion pass still to do. |
 | 05 | Video | [x] | [ ] | [x] | n/a | Signed off implicitly. Open items: hosting move, real captions, the 90-second claim. 390 check pending. |
 | 06 | Proof | [x] | [ ] | [x] | n/a | Signed off implicitly. 390 check pending. |
-| 07 | Testimonials | [~] | [ ] | [x] | [ ] | Rebuilt on the 21st.dev Circular Testimonials component (founder supplied), retokened, Framer replaced with CSS. Lottie accent kept. Visible in dev via sample flag. Awaiting sign-off. |
-| 08 | Pricing | [ ] | [ ] | [ ] | n/a | |
+| 07 | Testimonials | [x] | [ ] | [x] | [ ] | Signed off implicitly. 390 and reduced-motion checks pending. |
+| 08 | Pricing | [~] | [ ] | [x] | n/a | Built and checked at desktop. Awaiting sign-off. |
 | 09 | Guarantee + FAQ | [ ] | [ ] | [ ] | n/a | |
 | 10 | Final CTA + footer + page assembly | [ ] | [ ] | [ ] | n/a | |
 | 11 | Hardening: analytics, schema, perf, a11y, metadata | [ ] | [ ] | [ ] | [ ] | |
 
-Progress: 7 / 13 steps done (P partly, 07 awaiting sign-off).
+Progress: 8 / 13 steps done (P partly, 08 awaiting sign-off).
 
 ## Detailed checklist
 
@@ -113,12 +113,12 @@ Progress: 7 / 13 steps done (P partly, 07 awaiting sign-off).
 - [~] Verification: with the flag, checked at desktop in Chrome (featured 591px, flanks 376px at 0.6, buttons 48px, Lottie canvas mounted). Still to do: 390 check, and a production build without the flag to confirm no "Sample Student" string ships
 
 ### 08. Pricing
-- [ ] `components/Pricing.tsx`, id `pricing`, ink bg, H2 + price cols 1 to 6, bullets + CTA cols 7 to 12
-- [ ] "$249.99" mono price size, "for two months" beneath
-- [ ] Plain bullet list with hairline rules, guarantee bullet links to `#guarantee`
-- [ ] Anchor line, primary CTA full width on mobile, button sub text
-- [ ] Fire `pricing_view` once at 50% in view
-- [ ] Verification: screenshots; guarantee and footnote within one scroll of CTA on mobile
+- [x] `components/Pricing.tsx`, id `pricing`, ink bg with dots, H2 + price cols 1 to 6, bullets + CTA cols 7 to 12, stacked on mobile
+- [x] "$249.99" mono price size in paper, "for two months" beneath
+- [x] Plain bullet list with hairline rules, no icons, guarantee bullet links to `#guarantee`
+- [x] Anchor line (en dash written as "to" per house style), primary CTA full width on mobile with placement pricing, button sub text
+- [x] `components/PricingView.tsx` fires `pricing_view` once at 50% in view
+- [~] Verification: desktop checked. Mobile check of guarantee and footnote proximity pending step 09
 
 ### 09. Guarantee + FAQ
 - [ ] `components/Guarantee.tsx` id `guarantee`, signal block with ink text, contrast confirmed
@@ -181,6 +181,7 @@ Progress: 7 / 13 steps done (P partly, 07 awaiting sign-off).
 | 2026-09-10 | 03 | ROI comparison built with content/roi.ts, RoiComparison, RoiRerank. Mounted after hero. Layout verified, motion pending a visible tab. |
 | 2026-09-10 | 02 | User asked for a visible right edge on the hero image. Bleed removed, shadow token deepened (0 24px 64px -8px rgba(2,6,16,0.7)). |
 | 2026-09-10 | 01 | Header: translucent blur on scroll, smaller CTA, and palette that follows the section beneath (ink or paper). Sections tagged with data-section-theme. |
+| 2026-09-10 | 08 | Pricing built and mounted. |
 | 2026-09-10 | 07/04 | Founder supplied two 21st.dev components. Circular Testimonials replaces the Embla carousel; Elastic Gallery replaces the three-column screenshots in How it works. Both retokened, Framer and react-icons swapped for CSS and lucide. |
 | 2026-09-10 | 07 | Testimonials carousel built natively with Lottie accent, sample data behind a flag. Verified at desktop. |
 | 2026-09-10 | 06 | Proof built and mounted with empty testimonials data and stub. |
