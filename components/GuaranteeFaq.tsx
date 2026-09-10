@@ -25,7 +25,9 @@ export function GuaranteeFaq() {
         <div className="grid grid-cols-1 overflow-hidden rounded-panel border border-paper-edge bg-paper lg:grid-cols-12">
           <div id="guarantee" className="scroll-mt-24 bg-signal p-6 text-ink md:p-10 lg:col-span-5 lg:p-12">
             <p className="text-small text-ink-muted">Guarantee</p>
-            <h2 className="mt-4 text-display2 text-ink">The 7-day score-fit guarantee</h2>
+            <h2 className="mt-4 text-display2 text-ink">
+              The 7-day <span className="whitespace-nowrap">score-fit</span> guarantee
+            </h2>
             <p className="mt-6 max-w-[44ch] text-body text-ink">
               Buy, work your plan for 7 days. If your projected score doesn&apos;t move, or the
               plan doesn&apos;t fit how you study, email us for a full refund.
