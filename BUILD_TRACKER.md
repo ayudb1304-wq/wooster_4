@@ -19,7 +19,7 @@ Last updated: 2026-09-10 (afternoon)
 | 04 | How it works | [x] | [x] | [x] | [ ] | Signed off implicitly (user moved on). Reduced-motion pass still to do. |
 | 05 | Video | [x] | [ ] | [x] | n/a | Signed off implicitly. Open items: hosting move, real captions, the 90-second claim. 390 check pending. |
 | 06 | Proof | [x] | [ ] | [x] | n/a | Signed off implicitly. 390 check pending. |
-| 07 | Testimonials | [~] | [ ] | [x] | [ ] | Built natively on the shadcn/Embla carousel with a Lottie accent (founder request). Visible in dev via sample flag. Awaiting sign-off and a LottieFiles pick. |
+| 07 | Testimonials | [~] | [ ] | [x] | [ ] | Rebuilt on the 21st.dev Circular Testimonials component (founder supplied), retokened, Framer replaced with CSS. Lottie accent kept. Visible in dev via sample flag. Awaiting sign-off. |
 | 08 | Pricing | [ ] | [ ] | [ ] | n/a | |
 | 09 | Guarantee + FAQ | [ ] | [ ] | [ ] | n/a | |
 | 10 | Final CTA + footer + page assembly | [ ] | [ ] | [ ] | n/a | |
@@ -83,7 +83,7 @@ Progress: 7 / 13 steps done (P partly, 07 awaiting sign-off).
 
 ### 04. How it works
 - [x] `components/HowItWorks.tsx`, id `how-it-works`, paper bg, data-section-theme paper
-- [x] Layout changed at founder request (bento looked misaligned): three equal columns, text blocks share a min height, every screenshot cropped to the same 4:3 frame from the top so all three align on the same lines. No borders or card backgrounds. Single column on mobile. 21st.dev galleries were checked but all depend on Framer Motion and hover effects, both banned
+- [x] Layout changed again at founder request: the 21st.dev Elastic Gallery (`components/ui/elastic-gallery.tsx`, retokened, sentence case, props-driven). The active step expands to show its screenshot with number, name and description; the other two collapse to dimmed strips with a rotated label. Hover, click or focus switches. Step 1 opens first. All three step texts are also listed under the gallery with hairline rules
 - [x] Each step: Fraunces 300 display2 numeral in ink-muted, name body 600 (h3 with sr-only step label), description, lazy screenshot with dims, 8px radius, screenshot shadow. "[25] minutes" rendered as 25; confirm with founder
 - [x] `screenshot-enter` utility in globals.css: animation-timeline view(), entry 0% to 40%, opacity 0.6 to 1, wrapped in @supports with opacity 1 base. Global reduced-motion rule disables it
 - [x] No icons, no hover effects
@@ -104,12 +104,12 @@ Progress: 7 / 13 steps done (P partly, 07 awaiting sign-off).
 - [~] Verification: checked at desktop. 390 check pending
 
 ### 07. Testimonials
-- [x] Built natively instead of installing solaceui Testimonial Section 3 (no 21st.dev API key on hand; the shadcn Carousel with Embla was already installed and is what the spec requires). `components/Testimonials.tsx` (server, picks data) + `components/TestimonialCarousel.tsx` (client)
+- [x] Founder supplied the 21st.dev Circular Testimonials component instead of solaceui. Lives at `components/ui/circular-testimonials.tsx`. Adapted: framer-motion replaced with CSS keyframes (`quote-in`, `word-in`), react-icons replaced with lucide-react, styled-jsx replaced with Tailwind, arrows scoped to focus, autoplay paused under reduced motion and off screen, optional photo with a monogram fallback. `components/Testimonials.tsx` (server) maps the data into it. The earlier Embla carousel was removed
 - [x] Tokens only: Fraunces for the featured quote, Schibsted for name/school/year, JetBrains Mono for the score line, signal only on the featured score line, radius 0, hairline top rules instead of cards
-- [x] Selected slide is the featured quote at 44% width in display type; flanking slides 28% width at 60% opacity, so about 60% of the featured width
+- [x] Layout is the component design: a 3D photo stack (active front, neighbours tilted behind) beside the active quote in display type, name, school and year, mono score line in signal, "reported by student"
 - [x] `content/testimonials.ts` shipped empty; `content/testimonials.sample.ts` (Sample Student A/B/C) imported only when `NEXT_PUBLIC_SAMPLE_TESTIMONIALS=true` (set in `.env.local` for dev)
 - [x] Subline, H3 "Reported by students" with a Lottie accent beside it, carousel, card layout with mono score line and "reported by student" label
-- [x] Mobile 85% card with the next peeking, prev/next 48px square (carousel buttons changed from round to the 4px token radius), swipe via Embla, arrow keys on the focused viewport, instant under reduced motion via the global rule. With only three entries both buttons are disabled because everything fits; they enable with more entries
+- [x] Mobile stacks photo over text; prev/next 48px square with the token radius; arrow keys when the block has focus; autoplay every 5s until the visitor interacts; instant under reduced motion. Sample photos are Unsplash stock (sample only)
 - [~] Verification: with the flag, checked at desktop in Chrome (featured 591px, flanks 376px at 0.6, buttons 48px, Lottie canvas mounted). Still to do: 390 check, and a production build without the flag to confirm no "Sample Student" string ships
 
 ### 08. Pricing
@@ -181,6 +181,7 @@ Progress: 7 / 13 steps done (P partly, 07 awaiting sign-off).
 | 2026-09-10 | 03 | ROI comparison built with content/roi.ts, RoiComparison, RoiRerank. Mounted after hero. Layout verified, motion pending a visible tab. |
 | 2026-09-10 | 02 | User asked for a visible right edge on the hero image. Bleed removed, shadow token deepened (0 24px 64px -8px rgba(2,6,16,0.7)). |
 | 2026-09-10 | 01 | Header: translucent blur on scroll, smaller CTA, and palette that follows the section beneath (ink or paper). Sections tagged with data-section-theme. |
+| 2026-09-10 | 07/04 | Founder supplied two 21st.dev components. Circular Testimonials replaces the Embla carousel; Elastic Gallery replaces the three-column screenshots in How it works. Both retokened, Framer and react-icons swapped for CSS and lucide. |
 | 2026-09-10 | 07 | Testimonials carousel built natively with Lottie accent, sample data behind a flag. Verified at desktop. |
 | 2026-09-10 | 06 | Proof built and mounted with empty testimonials data and stub. |
 | 2026-09-10 | 04 | How it works rebuilt as three aligned columns after user feedback. Subtle dot and grid backgrounds added to hero, ROI, how it works, video. Dev server restarted to fix stale Tailwind scan. |
