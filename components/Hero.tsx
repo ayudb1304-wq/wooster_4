@@ -49,8 +49,8 @@ export function Hero() {
           <Image
             src="/screens/roi-plan.png"
             alt="Wooster study plan ranking SAT concepts by projected points gained"
-            width={1600}
-            height={1100}
+            width={1138}
+            height={932}
             priority
             fetchPriority="high"
             sizes="(min-width: 1024px) 60vw, 112vw"
