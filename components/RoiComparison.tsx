@@ -2,13 +2,13 @@ import { chapterOrder, roiRows } from "@/content/roi";
 import { RoiRerank } from "@/components/RoiRerank";
 
 // Copy: content/copy.md → Problem / ROI comparison. Verbatim.
-// This is the page's one memorable moment and its one grid-breaking moment:
-// the lists block breaks upward across the hero boundary by 64px on desktop.
+// This is the page's one memorable moment. The spec's upward overlap into the
+// hero was removed at the founder's request; the section starts below the hero.
 export function RoiComparison() {
   return (
     <section className="relative z-10 bg-paper text-ink" data-roi-section>
-      <div className="mx-auto grid max-w-[1440px] grid-cols-1 gap-y-12 px-gutter pb-section-y pt-12 lg:grid-cols-12 lg:gap-x-8 lg:pt-0">
-        <div className="lg:col-span-5 lg:col-start-1 lg:pt-4">
+      <div className="mx-auto grid max-w-[1440px] grid-cols-1 gap-y-12 px-gutter py-section-y lg:grid-cols-12 lg:gap-x-8">
+        <div className="lg:col-span-5 lg:col-start-1">
           <h2 className="text-display2">Generic prep goes chapter by chapter. Your score doesn&apos;t.</h2>
           <p className="mt-6 max-w-[60ch] text-body">
             Most students spend hours on topics worth a few points. Wooster ranks every concept by
@@ -17,7 +17,7 @@ export function RoiComparison() {
         </div>
 
         <div
-          className="bg-paper lg:col-span-7 lg:col-start-6 lg:-mt-16 lg:px-8 lg:pt-8"
+          className="lg:col-span-7 lg:col-start-6"
           data-roi-block
         >
           <div className="grid grid-cols-1 gap-x-8 gap-y-12 md:grid-cols-2">
