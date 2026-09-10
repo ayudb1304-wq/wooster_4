@@ -43,3 +43,6 @@ next-env.d.ts
 # design shots and local env
 /design/shots/
 .env*.local
+
+# large media, hosted on Vercel Blob or Cloudflare in production
+/public/video/*.mp4

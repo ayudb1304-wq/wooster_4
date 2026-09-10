@@ -16,8 +16,8 @@ Last updated: 2026-09-10 (afternoon)
 | 01 | Header + sticky mobile CTA | [x] | [x] | [x] | [ ] | Checked by hand. Header made sticky after user feedback. Reduced-motion pass still to do. |
 | 02 | Hero | [x] | [x] | [x] | [ ] | User signed off. Reduced-motion pass still to do. |
 | 03 | Problem / ROI comparison | [x] | [x] | [x] | [ ] | Signed off after pin and overlap changes. Reduced-motion pass still to do. |
-| 04 | How it works | [~] | [x] | [x] | [ ] | Built and checked at 390 and desktop. Awaiting user sign-off. |
-| 05 | Video | [ ] | [ ] | [ ] | n/a | |
+| 04 | How it works | [x] | [x] | [x] | [ ] | Signed off implicitly (user moved on). Reduced-motion pass still to do. |
+| 05 | Video | [~] | [ ] | [x] | n/a | Built with the founder video served locally. Needs hosting move, real captions, and the 90-second claim resolved. |
 | 06 | Proof | [ ] | [ ] | [ ] | n/a | |
 | 07 | Testimonials | [ ] | [ ] | [ ] | [ ] | |
 | 08 | Pricing | [ ] | [ ] | [ ] | n/a | |
@@ -25,7 +25,7 @@ Last updated: 2026-09-10 (afternoon)
 | 10 | Final CTA + footer + page assembly | [ ] | [ ] | [ ] | n/a | |
 | 11 | Hardening: analytics, schema, perf, a11y, metadata | [ ] | [ ] | [ ] | [ ] | |
 
-Progress: 4 / 13 steps done (P partly, 04 awaiting sign-off).
+Progress: 5 / 13 steps done (P partly, 05 awaiting sign-off).
 
 ## Detailed checklist
 
@@ -36,7 +36,7 @@ Progress: 4 / 13 steps done (P partly, 04 awaiting sign-off).
 - [x] Copy `copy.md` to `content/copy.md`
 - [ ] Add 1 to 2 reference screenshots to `/design/reference/` (live logo JPEG and live OG image saved there for reference)
 - [x] Product screenshots in `/public/screens/`: roi-plan.png = Concept Library (1138x932), progress.png = Stats dashboard (1028x922), diagnostic.png = Practice Exams page (1120x875, closest available; a real diagnostic question screen would be better). Originals in `design/reference/app/`
-- [ ] Video poster + captions file (`/public/video/moneyball.vtt`) and `NEXT_PUBLIC_VIDEO_URL`
+- [~] Video: founder supplied `public/video/moneyball.mp4` (76MB, 1920x1080, 4m24s, captions burned in). Git-ignored. Poster cut at 9s with ffmpeg (imageio-ffmpeg) to `public/video/poster.jpg`. `moneyball.vtt` is a placeholder. `NEXT_PUBLIC_VIDEO_URL=/video/moneyball.mp4` in `.env.local` for dev only
 - [!] Install Frontend Design plugin, Playwright MCP, shadcn MCP (Playwright does not run here; user checks visually by hand)
 - [x] `git init` and first commit
 
@@ -90,11 +90,11 @@ Progress: 4 / 13 steps done (P partly, 04 awaiting sign-off).
 - [x] Verification: checked at desktop (1920) and 390 via /preview. Partial opacities measured mid-entry, so the scroll-driven fade is live
 
 ### 05. Video
-- [ ] `components/ConceptVideo.tsx`, id `video`, ink bg, H2 cols 1 to 5, frame cols 6 to 13
-- [ ] Poster image with centered "Play" button
-- [ ] On click swap in `<video>` with controls, captions track, preload none, src from `NEXT_PUBLIC_VIDEO_URL`
-- [ ] Fire `video_play` event
-- [ ] Verification: screenshots, no video bytes before click
+- [x] `components/ConceptVideo.tsx`, id `video`, ink bg, H2 cols 1 to 5, 16:9 frame cols 6 to 13, data-section-theme ink
+- [x] `components/VideoPlayer.tsx`: lazy next/image poster with the centred primary "Play" button
+- [x] On click swaps in `<video>` with controls, captions track, preload none, playsInline, src from `NEXT_PUBLIC_VIDEO_URL`, 160ms fade-in
+- [x] Fires `video_play` on window
+- [~] Verification: confirmed in Chrome that no .mp4 request happens before the click and the video element mounts after it. 390px check and a real playback check by the user pending
 
 ### 06. Proof
 - [ ] `components/Proof.tsx`, ink bg, H2 + body cols 1 to 7
@@ -156,7 +156,9 @@ Progress: 4 / 13 steps done (P partly, 04 awaiting sign-off).
 - Tailwind v4 has no named duration namespace, so `duration-fast` style classes do nothing. Use `duration-(--duration-fast)`, `duration-(--duration-base)`, `duration-(--duration-reveal)`. Fixed across all components 2026-09-10.
 - Next 16 caches optimized images under `.next/dev/cache/images`. After replacing a file in `public/`, delete that folder or the browser keeps getting the old image.
 - Assets still needed from the founder: design reference screenshots, video poster, captions file. A true diagnostic question screenshot and 2x captures of all screens would improve steps 02 and 04.
-- Current video lives on S3 Singapore: https://wooster-concept-videos.s3.ap-southeast-1.amazonaws.com/Landing/Wooster_Prep_The_Moneyball_of_SAT_updated_06-16-2026_with_captions.mp4. Must move to Vercel Blob or Cloudflare before step 05; captions are burned in, a separate .vtt is still needed.
+- The founder video is 4 minutes 24 seconds, but the copy says "90 seconds" in the hero link and the video H2. Either a 90-second cut is needed or the copy must change.
+- Production hosting: upload `public/video/moneyball.mp4` to Vercel Blob or Cloudflare and set `NEXT_PUBLIC_VIDEO_URL` there. The file is git-ignored and must not ship in the repo.
+- Current live video lives on S3 Singapore: https://wooster-concept-videos.s3.ap-southeast-1.amazonaws.com/Landing/Wooster_Prep_The_Moneyball_of_SAT_updated_06-16-2026_with_captions.mp4. Must move to Vercel Blob or Cloudflare before step 05; captions are burned in, a separate .vtt is still needed.
 - Live OG image is off-brand (blue, sans). Generate a new one in step 11.
 - Title metadata: em dash from live site replaced with a colon. Confirm.
 
@@ -176,6 +178,7 @@ Progress: 4 / 13 steps done (P partly, 04 awaiting sign-off).
 | 2026-09-10 | 03 | ROI comparison built with content/roi.ts, RoiComparison, RoiRerank. Mounted after hero. Layout verified, motion pending a visible tab. |
 | 2026-09-10 | 02 | User asked for a visible right edge on the hero image. Bleed removed, shadow token deepened (0 24px 64px -8px rgba(2,6,16,0.7)). |
 | 2026-09-10 | 01 | Header: translucent blur on scroll, smaller CTA, and palette that follows the section beneath (ink or paper). Sections tagged with data-section-theme. |
+| 2026-09-10 | 05 | Video section built with the founder-supplied mp4 served from public/video in dev, poster cut at 9s, placeholder vtt. Verified click-to-play wiring in Chrome. |
 | 2026-09-10 | 04 | How it works built and mounted. Bento cells top-aligned after a first pass showed bottom-anchored images. |
 | 2026-09-10 | 01 | Header theme change made smooth: logos crossfade, colours transition over 720ms. Found and fixed that no duration class had been applying anywhere (Tailwind v4). |
 | 2026-09-10 | 02 | User then asked for the bleed back with a soft fade. Bleed restored, ink gradient fade added on the right of the hero. |

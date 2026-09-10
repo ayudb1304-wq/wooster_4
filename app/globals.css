@@ -290,3 +290,13 @@
     animation-range: entry 0% entry 40%;
   }
 }
+
+/* Poster to video crossfade (motion spec item 5). */
+@keyframes video-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
