@@ -61,7 +61,7 @@ export function Hero() {
       {/* Soft ink fade so the bleeding screenshot blends into the edge instead of cutting off hard. */}
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute inset-y-0 right-0 w-[14vw] bg-gradient-to-r from-ink/0 via-ink/70 to-ink lg:w-[9vw]"
+        className="pointer-events-none absolute inset-y-0 right-0 w-[10vw] bg-gradient-to-r from-ink/0 via-ink/70 to-ink lg:w-[6vw]"
         data-hero-reveal="fade"
       />
       <HeroReveal />
