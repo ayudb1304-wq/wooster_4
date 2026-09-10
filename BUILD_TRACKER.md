@@ -12,8 +12,8 @@ Last updated: 2026-09-10 (afternoon)
 | # | Step | Status | Verified 390px | Verified 1440px | Reduced motion | Notes |
 |---|------|--------|----------------|-----------------|----------------|-------|
 | P | Pre-work (repo scaffold, docs in place, references, tooling) | [~] | n/a | n/a | n/a | Code side done. Still need: reference screenshots, product screenshots, video poster + vtt, MCP plugins |
-| 00 | Setup: fonts, globals.css, tailwind, shadcn, layouts, shot script | [~] | [ ] | [ ] | n/a | Built and compiling. Awaiting manual visual check of /scratch (Playwright not usable on this machine) |
-| 01 | Header + sticky mobile CTA | [ ] | [ ] | [ ] | [ ] | |
+| 00 | Setup: fonts, globals.css, tailwind, shadcn, layouts, shot script | [x] | [x] | [x] | n/a | Verified by hand on /scratch. Scratch page deleted. |
+| 01 | Header + sticky mobile CTA | [~] | [ ] | [ ] | [ ] | Built, compiles, serves. Awaiting manual check. Hero placeholder in page.tsx until step 02. |
 | 02 | Hero | [ ] | [ ] | [ ] | [ ] | |
 | 03 | Problem / ROI comparison | [ ] | [ ] | [ ] | [ ] | |
 | 04 | How it works | [ ] | [ ] | [ ] | [ ] | |
@@ -25,7 +25,7 @@ Last updated: 2026-09-10 (afternoon)
 | 10 | Final CTA + footer + page assembly | [ ] | [ ] | [ ] | n/a | |
 | 11 | Hardening: analytics, schema, perf, a11y, metadata | [ ] | [ ] | [ ] | [ ] | |
 
-Progress: 0 / 13 steps done (P and 00 in progress, awaiting manual check).
+Progress: 1 / 13 steps done (P partly, 01 awaiting manual check).
 
 ## Detailed checklist
 
@@ -50,16 +50,16 @@ Progress: 0 / 13 steps done (P and 00 in progress, awaiting manual check).
 - [x] `app/(landing)/layout.tsx` with `viewport-fit=cover`; placeholder `app/(landing)/page.tsx`
 - [x] `app/layout.tsx` metadata copied from live site (title, description, OG, Twitter). Title em dash replaced with a colon per house style; revert if SEO continuity matters more
 - [~] Playwright + `npm run shot -- <name> [route]` script in `scripts/shot.mjs`. Installed but the headless browser times out on this machine; user verifies manually for now
-- [~] Verification: scratch page at `/scratch` compiles and serves with all three font variables on html. Awaiting manual check at 390px and 1440px, then delete `app/scratch/`
+- [x] Verification: scratch page checked by hand at 390px and 1440px, fonts confirmed, then deleted
 
 ### 01. Header + sticky mobile CTA
-- [ ] `components/Header.tsx` (server component + client island)
-- [ ] Ink-deep bg, 56px mobile / 64px desktop, Fraunces 600 wordmark
-- [ ] Desktop links: How it works, Student login, primary CTA. Mobile: wordmark + Student login only
-- [ ] `components/StickyCta.tsx`: appears after hero CTA scrolls out, hidden at >= 1024px, safe-area padding
-- [ ] Slide-up 320ms, instant under reduced motion
-- [ ] All targets >= 48px, signal focus rings
-- [ ] Verification: screenshots, bar absent at top and present after hero on mobile
+- [x] `components/Header.tsx` (server component) + `components/HeaderRule.tsx` client island for the scroll hairline
+- [x] Ink-deep bg, 56px mobile / 64px desktop, Fraunces 600 wordmark
+- [x] Desktop links: How it works, Student login, primary CTA. Mobile: wordmark + Student login only
+- [x] `components/StickyCta.tsx`: watches `[data-hero-cta]`, hides when `[data-final-cta]` is in view, hidden at >= 1024px, safe-area padding
+- [x] Slide-up 320ms token ease, instant under reduced motion (global kill switch)
+- [x] All targets >= 48px, signal focus rings
+- [~] Verification: manual. Check at 390px: bar absent at top, slides up after the placeholder hero scrolls out. Check at 1440px: no bar, three nav items, hairline appears after 8px scroll
 
 ### 02. Hero
 - [ ] `components/Hero.tsx`, ink bg, asymmetric 12-col layout, screenshot bleeds right ~10%
@@ -162,3 +162,5 @@ Progress: 0 / 13 steps done (P and 00 in progress, awaiting manual check).
 | 2026-09-10 | tracker | Created tracker from build-prompts.md. Nothing built yet. |
 | 2026-09-10 | P | Scaffolded Next 16 + Tailwind v4 at repo root, placed CLAUDE.md, tokens, copy. git init, first commit. |
 | 2026-09-10 | 00 | Fonts, globals.css tokens, shadcn button/accordion/carousel retokened, layouts, metadata, shot script, scratch page. Awaiting manual visual check. |
+| 2026-09-10 | 00 | Verified by hand. Scratch page deleted. Done. |
+| 2026-09-10 | 01 | Header, HeaderRule, StickyCta built. Page assembled with a temporary hero placeholder. Awaiting manual check. |
