@@ -41,14 +41,12 @@ export function Header() {
           >
             Student login
           </Link>
-          <Button
-            size="sm"
-            className="hidden lg:inline-flex"
-            nativeButton={false}
-            render={<Link href="/diagnostic" data-placement="header" />}
-          >
-            Start free diagnostic
-          </Button>
+          {/* Desktop only. Wrapped rather than class-toggled so the base display class cannot win. */}
+          <div className="hidden lg:block">
+            <Button size="sm" nativeButton={false} render={<Link href="/diagnostic" data-placement="header" />}>
+              Start free diagnostic
+            </Button>
+          </div>
         </nav>
       </div>
       <HeaderRule />

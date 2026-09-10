@@ -25,11 +25,12 @@ const buttonVariants = cva(
         // sm is for desktop-only placements (header). Mobile targets stay at 48px.
         sm: "min-h-10 px-4 text-small",
         default: "min-h-tap px-6 text-body",
-        lg: "min-h-14 px-8 text-body",
+        lg: "min-h-14 px-6 py-3 text-body sm:px-8",
         icon: "min-h-tap min-w-tap px-0 size-tap text-body",
       },
       full: {
-        true: "w-full",
+        // Full-width buttons may wrap on narrow phones instead of overflowing.
+        true: "w-full whitespace-normal text-center",
         false: "",
       },
     },
