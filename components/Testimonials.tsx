@@ -1,5 +1,5 @@
 import { testimonials, type Testimonial } from "@/content/testimonials";
-import { TestimonialCarousel } from "@/components/TestimonialCarousel";
+import { CircularTestimonials } from "@/components/ui/circular-testimonials";
 import { LottieAccent } from "@/components/LottieAccent";
 
 // Copy: content/copy.md → Proof → Testimonials block. Verbatim.
@@ -26,7 +26,19 @@ export async function Testimonials() {
         {/* Lottie accent. Replace public/lottie/reported.json with a LottieFiles pick. */}
         <LottieAccent src="/lottie/reported.json" className="h-14 w-14 shrink-0 lg:h-16 lg:w-16" />
       </div>
-      <TestimonialCarousel items={items} />
+      <div className="mt-10 lg:mt-14">
+        <CircularTestimonials
+          testimonials={items.map((t) => ({
+            quote: t.quote,
+            name: t.name,
+            // Comma, never a middle dot (copy rules).
+            designation: `${t.school}, ${t.year}`,
+            score: `${t.before} → ${t.after}`,
+            scoreLabel: "reported by student",
+            src: t.photo,
+          }))}
+        />
+      </div>
     </div>
   );
 }

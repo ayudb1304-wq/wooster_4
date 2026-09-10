@@ -319,3 +319,36 @@
 @utility pattern-fade {
   mask-image: radial-gradient(ellipse 70% 80% at 50% 40%, black 30%, transparent 100%);
 }
+
+/* Circular testimonials: quote block and per-word reveal (replaces framer-motion). */
+@keyframes quote-in {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes word-in {
+  from {
+    opacity: 0;
+    filter: blur(10px);
+    transform: translateY(5px);
+  }
+  to {
+    opacity: 1;
+    filter: blur(0);
+    transform: translateY(0);
+  }
+}
+
+@utility quote-in {
+  animation: quote-in 300ms var(--ease-in-out) both;
+}
+
+@utility word-in {
+  animation: word-in 220ms var(--ease-in-out) both;
+}
