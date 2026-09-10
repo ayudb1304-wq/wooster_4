@@ -5,14 +5,14 @@ Prompts live in `wooster_revamp_docs/build-prompts.md`. Rules live in `wooster_r
 
 Status legend: `[ ]` not started, `[~]` in progress, `[x]` done and verified, `[!]` blocked (say why in Notes).
 
-Last updated: 2026-09-10
+Last updated: 2026-09-10 (afternoon)
 
 ## Summary
 
 | # | Step | Status | Verified 390px | Verified 1440px | Reduced motion | Notes |
 |---|------|--------|----------------|-----------------|----------------|-------|
-| P | Pre-work (repo scaffold, docs in place, references, tooling) | [ ] | n/a | n/a | n/a | |
-| 00 | Setup: fonts, globals.css, tailwind, shadcn, layouts, shot script | [ ] | [ ] | [ ] | n/a | |
+| P | Pre-work (repo scaffold, docs in place, references, tooling) | [~] | n/a | n/a | n/a | Code side done. Still need: reference screenshots, product screenshots, video poster + vtt, MCP plugins |
+| 00 | Setup: fonts, globals.css, tailwind, shadcn, layouts, shot script | [~] | [ ] | [ ] | n/a | Built and compiling. Awaiting manual visual check of /scratch (Playwright not usable on this machine) |
 | 01 | Header + sticky mobile CTA | [ ] | [ ] | [ ] | [ ] | |
 | 02 | Hero | [ ] | [ ] | [ ] | [ ] | |
 | 03 | Problem / ROI comparison | [ ] | [ ] | [ ] | [ ] | |
@@ -25,32 +25,32 @@ Last updated: 2026-09-10
 | 10 | Final CTA + footer + page assembly | [ ] | [ ] | [ ] | n/a | |
 | 11 | Hardening: analytics, schema, perf, a11y, metadata | [ ] | [ ] | [ ] | [ ] | |
 
-Progress: 0 / 13 steps done.
+Progress: 0 / 13 steps done (P and 00 in progress, awaiting manual check).
 
 ## Detailed checklist
 
 ### P. Pre-work (before prompt 00)
-- [ ] Create Next.js (App Router) + Tailwind project at repo root
-- [ ] Copy `CLAUDE.md` to repo root
-- [ ] Move `design-tokens.ts` to `app/design-tokens.ts`
-- [ ] Move `copy.md` to `content/copy.md`
+- [x] Create Next.js (App Router) + Tailwind project at repo root (Next 16.3, Tailwind v4, React 19)
+- [x] Copy `CLAUDE.md` to repo root
+- [x] Copy `design-tokens.ts` to `app/design-tokens.ts`
+- [x] Copy `copy.md` to `content/copy.md`
 - [ ] Add 1 to 2 reference screenshots to `/design/reference/`
 - [ ] Product screenshots in `/public/screens/` (diagnostic.png, roi-plan.png, progress.png)
 - [ ] Video poster + captions file (`/public/video/moneyball.vtt`) and `NEXT_PUBLIC_VIDEO_URL`
-- [ ] Install Frontend Design plugin, Playwright MCP, shadcn MCP
-- [ ] `git init` and first commit
+- [!] Install Frontend Design plugin, Playwright MCP, shadcn MCP (Playwright does not run here; user checks visually by hand)
+- [x] `git init` and first commit
 
 ### 00. Setup
-- [ ] Fonts via next/font/google: Fraunces (300, 600, opsz + WONK), Schibsted Grotesk (400, 600), JetBrains Mono (500), display swap
-- [ ] CSS variables `--font-fraunces`, `--font-schibsted`, `--font-jetbrains`
-- [ ] `app/globals.css`: one variable per token, base body styles, 68ch measure, reduced-motion kill switch
-- [ ] `tailwind.config` reads token variables (ink, paper, signal, display/body/mono, button/screenshot radius)
-- [ ] shadcn/ui installed with only button, accordion, carousel
-- [ ] Button variants retokened (primary signal fill, secondary outline, 4px radius, 48px min height)
-- [ ] `app/(landing)/layout.tsx` with `viewport-fit=cover`
-- [ ] `app/layout.tsx` metadata copied from live site
-- [ ] Playwright + `npm run shot -- <name>` script writing to `/design/shots/`
-- [ ] Verification: scratch page screenshot, fonts loaded, AA contrast, scratch page deleted
+- [x] Fonts via next/font/google in `app/fonts.ts`: Fraunces variable with opsz + WONK axes, Schibsted Grotesk 400/600, JetBrains Mono 500, display swap
+- [x] CSS variables `--font-fraunces`, `--font-schibsted`, `--font-jetbrains`
+- [x] `app/globals.css`: one variable per token, base body styles, 68ch measure, reduced-motion kill switch
+- [x] Tailwind v4 has no config file; `@theme inline` in globals.css maps tokens to utilities (bg-ink, text-signal, font-display, rounded-button, shadow-screenshot, text-display1, etc.) and wipes the default palette, fonts, radii and shadows
+- [x] shadcn/ui installed with only button, accordion, carousel (base-nova style; tw-animate-css removed)
+- [x] Button variants retokened: primary (signal fill, ink text), secondary with tone onPaper / onInk, icon size for carousel, 4px radius, 48px min height, signal focus ring
+- [x] `app/(landing)/layout.tsx` with `viewport-fit=cover`; placeholder `app/(landing)/page.tsx`
+- [x] `app/layout.tsx` metadata copied from live site (title, description, OG, Twitter). Title em dash replaced with a colon per house style; revert if SEO continuity matters more
+- [~] Playwright + `npm run shot -- <name> [route]` script in `scripts/shot.mjs`. Installed but the headless browser times out on this machine; user verifies manually for now
+- [~] Verification: scratch page at `/scratch` compiles and serves with all three font variables on html. Awaiting manual check at 390px and 1440px, then delete `app/scratch/`
 
 ### 01. Header + sticky mobile CTA
 - [ ] `components/Header.tsx` (server component + client island)
@@ -151,10 +151,14 @@ Progress: 0 / 13 steps done.
 
 ## Open questions / blockers
 
-- None yet.
+- Playwright headless Chromium hangs on page.goto on this machine. Screenshot verification is manual until fixed.
+- Assets still needed from the founder: reference screenshots, product screenshots (diagnostic.png, roi-plan.png, progress.png), video poster, captions file, video URL.
+- Title metadata: em dash from live site replaced with a colon. Confirm.
 
 ## Log
 
 | Date | Step | Change |
 |------|------|--------|
 | 2026-09-10 | tracker | Created tracker from build-prompts.md. Nothing built yet. |
+| 2026-09-10 | P | Scaffolded Next 16 + Tailwind v4 at repo root, placed CLAUDE.md, tokens, copy. git init, first commit. |
+| 2026-09-10 | 00 | Fonts, globals.css tokens, shadcn button/accordion/carousel retokened, layouts, metadata, shot script, scratch page. Awaiting manual visual check. |
