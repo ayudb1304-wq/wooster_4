@@ -1,6 +1,5 @@
 import { Button as ButtonPrimitive } from "@base-ui/react/button";
 import { cva, type VariantProps } from "class-variance-authority";
-import { cn } from "cn";
 
 /*
   Two variants only, both from tokens.
@@ -66,7 +65,9 @@ function Button({
   return (
     <ButtonPrimitive
       data-slot="button"
-      className={cn(buttonVariants({ variant, tone, size, full, className }))}
+      // Not passed through cn: its Tailwind merger treats text-ink and the
+      // size class text-body as conflicting and drops the colour.
+      className={buttonVariants({ variant, tone, size, full, className })}
       {...props}
     />
   );
