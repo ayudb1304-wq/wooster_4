@@ -15,8 +15,8 @@ Last updated: 2026-09-10 (afternoon)
 | 00 | Setup: fonts, globals.css, tailwind, shadcn, layouts, shot script | [x] | [x] | [x] | n/a | Verified by hand on /scratch. Scratch page deleted. |
 | 01 | Header + sticky mobile CTA | [x] | [x] | [x] | [ ] | Checked by hand. Header made sticky after user feedback. Reduced-motion pass still to do. |
 | 02 | Hero | [x] | [x] | [x] | [ ] | User signed off. Reduced-motion pass still to do. |
-| 03 | Problem / ROI comparison | [~] | [x] | [x] | [ ] | Alignment fixed after user feedback. Re-rank seen completing at desktop. Awaiting user sign-off and reduced-motion pass. |
-| 04 | How it works | [ ] | [ ] | [ ] | [ ] | |
+| 03 | Problem / ROI comparison | [x] | [x] | [x] | [ ] | Signed off after pin and overlap changes. Reduced-motion pass still to do. |
+| 04 | How it works | [~] | [x] | [x] | [ ] | Built and checked at 390 and desktop. Awaiting user sign-off. |
 | 05 | Video | [ ] | [ ] | [ ] | n/a | |
 | 06 | Proof | [ ] | [ ] | [ ] | n/a | |
 | 07 | Testimonials | [ ] | [ ] | [ ] | [ ] | |
@@ -25,7 +25,7 @@ Last updated: 2026-09-10 (afternoon)
 | 10 | Final CTA + footer + page assembly | [ ] | [ ] | [ ] | n/a | |
 | 11 | Hardening: analytics, schema, perf, a11y, metadata | [ ] | [ ] | [ ] | [ ] | |
 
-Progress: 3 / 13 steps done (P partly, 03 awaiting motion check).
+Progress: 4 / 13 steps done (P partly, 04 awaiting sign-off).
 
 ## Detailed checklist
 
@@ -82,12 +82,12 @@ Progress: 3 / 13 steps done (P partly, 03 awaiting motion check).
 - [~] Verification: initial state and final state confirmed at desktop, stacked layout confirmed at 390. Reduced-motion check pending
 
 ### 04. How it works
-- [ ] `components/HowItWorks.tsx`, id `how-it-works`, paper bg
-- [ ] Bento grid: step 1 tall at left (cols 1 to 5), steps 2 and 3 stacked right (cols 6 to 13)
-- [ ] Each step: Fraunces 300 numeral, name body 600, description, lazy screenshot with dims
-- [ ] Single CSS scroll-driven opacity animation 0.6 to 1 with fallback, none under reduced motion
-- [ ] No icons, no hover effects
-- [ ] Verification: screenshots and deltas fixed
+- [x] `components/HowItWorks.tsx`, id `how-it-works`, paper bg, data-section-theme paper
+- [x] Bento grid: step 1 tall at left (cols 1 to 5, two rows), steps 2 and 3 stacked right (cols 6 to 13), each as text beside image. Single column on mobile
+- [x] Each step: Fraunces 300 display2 numeral in ink-muted, name body 600 (h3 with sr-only step label), description, lazy screenshot with dims, 8px radius, screenshot shadow. "[25] minutes" rendered as 25; confirm with founder
+- [x] `screenshot-enter` utility in globals.css: animation-timeline view(), entry 0% to 40%, opacity 0.6 to 1, wrapped in @supports with opacity 1 base. Global reduced-motion rule disables it
+- [x] No icons, no hover effects
+- [x] Verification: checked at desktop (1920) and 390 via /preview. Partial opacities measured mid-entry, so the scroll-driven fade is live
 
 ### 05. Video
 - [ ] `components/ConceptVideo.tsx`, id `video`, ink bg, H2 cols 1 to 5, frame cols 6 to 13
@@ -176,6 +176,7 @@ Progress: 3 / 13 steps done (P partly, 03 awaiting motion check).
 | 2026-09-10 | 03 | ROI comparison built with content/roi.ts, RoiComparison, RoiRerank. Mounted after hero. Layout verified, motion pending a visible tab. |
 | 2026-09-10 | 02 | User asked for a visible right edge on the hero image. Bleed removed, shadow token deepened (0 24px 64px -8px rgba(2,6,16,0.7)). |
 | 2026-09-10 | 01 | Header: translucent blur on scroll, smaller CTA, and palette that follows the section beneath (ink or paper). Sections tagged with data-section-theme. |
+| 2026-09-10 | 04 | How it works built and mounted. Bento cells top-aligned after a first pass showed bottom-anchored images. |
 | 2026-09-10 | 01 | Header theme change made smooth: logos crossfade, colours transition over 720ms. Found and fixed that no duration class had been applying anywhere (Tailwind v4). |
 | 2026-09-10 | 02 | User then asked for the bleed back with a soft fade. Bleed restored, ink gradient fade added on the right of the hero. |
 | 2026-09-10 | 03 | User asked to remove the overlap into the hero. Removed. Page has no grid-breaking moment now. |
