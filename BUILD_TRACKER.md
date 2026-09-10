@@ -18,14 +18,14 @@ Last updated: 2026-09-10 (afternoon)
 | 03 | Problem / ROI comparison | [x] | [x] | [x] | [ ] | Signed off after pin and overlap changes. Reduced-motion pass still to do. |
 | 04 | How it works | [x] | [x] | [x] | [ ] | Signed off implicitly (user moved on). Reduced-motion pass still to do. |
 | 05 | Video | [x] | [ ] | [x] | n/a | Signed off implicitly. Open items: hosting move, real captions, the 90-second claim. 390 check pending. |
-| 06 | Proof | [~] | [ ] | [x] | n/a | Built and checked at desktop. Awaiting sign-off. |
-| 07 | Testimonials | [ ] | [ ] | [ ] | [ ] | |
+| 06 | Proof | [x] | [ ] | [x] | n/a | Signed off implicitly. 390 check pending. |
+| 07 | Testimonials | [~] | [ ] | [x] | [ ] | Built natively on the shadcn/Embla carousel with a Lottie accent (founder request). Visible in dev via sample flag. Awaiting sign-off and a LottieFiles pick. |
 | 08 | Pricing | [ ] | [ ] | [ ] | n/a | |
 | 09 | Guarantee + FAQ | [ ] | [ ] | [ ] | n/a | |
 | 10 | Final CTA + footer + page assembly | [ ] | [ ] | [ ] | n/a | |
 | 11 | Hardening: analytics, schema, perf, a11y, metadata | [ ] | [ ] | [ ] | [ ] | |
 
-Progress: 6 / 13 steps done (P partly, 06 awaiting sign-off).
+Progress: 7 / 13 steps done (P partly, 07 awaiting sign-off).
 
 ## Detailed checklist
 
@@ -104,13 +104,13 @@ Progress: 6 / 13 steps done (P partly, 06 awaiting sign-off).
 - [~] Verification: checked at desktop. 390 check pending
 
 ### 07. Testimonials
-- [ ] Install solaceui Testimonial Section 3 from 21st.dev, move to `components/Testimonials.tsx`, strip extras
-- [ ] Retoken fully: fonts, ink bg, signal only on featured score line, radius 0
-- [ ] Featured centre card, flanking cards ~60% width lower contrast
-- [ ] `content/testimonials.ts` shipped empty; `content/testimonials.sample.ts` behind `NEXT_PUBLIC_SAMPLE_TESTIMONIALS`
-- [ ] Subline, H3 "Reported by students", carousel, card layout with mono score line
-- [ ] Mobile ~85vw card with peek, prev/next >= 48px, swipe, keyboard arrows, instant under reduced motion
-- [ ] Verification: with flag screenshots; without flag block absent and no "Sample Student" in prod build
+- [x] Built natively instead of installing solaceui Testimonial Section 3 (no 21st.dev API key on hand; the shadcn Carousel with Embla was already installed and is what the spec requires). `components/Testimonials.tsx` (server, picks data) + `components/TestimonialCarousel.tsx` (client)
+- [x] Tokens only: Fraunces for the featured quote, Schibsted for name/school/year, JetBrains Mono for the score line, signal only on the featured score line, radius 0, hairline top rules instead of cards
+- [x] Selected slide is the featured quote at 44% width in display type; flanking slides 28% width at 60% opacity, so about 60% of the featured width
+- [x] `content/testimonials.ts` shipped empty; `content/testimonials.sample.ts` (Sample Student A/B/C) imported only when `NEXT_PUBLIC_SAMPLE_TESTIMONIALS=true` (set in `.env.local` for dev)
+- [x] Subline, H3 "Reported by students" with a Lottie accent beside it, carousel, card layout with mono score line and "reported by student" label
+- [x] Mobile 85% card with the next peeking, prev/next 48px square (carousel buttons changed from round to the 4px token radius), swipe via Embla, arrow keys on the focused viewport, instant under reduced motion via the global rule. With only three entries both buttons are disabled because everything fits; they enable with more entries
+- [~] Verification: with the flag, checked at desktop in Chrome (featured 591px, flanks 376px at 0.6, buttons 48px, Lottie canvas mounted). Still to do: 390 check, and a production build without the flag to confirm no "Sample Student" string ships
 
 ### 08. Pricing
 - [ ] `components/Pricing.tsx`, id `pricing`, ink bg, H2 + price cols 1 to 6, bullets + CTA cols 7 to 12
@@ -153,6 +153,7 @@ Progress: 6 / 13 steps done (P partly, 06 awaiting sign-off).
 
 - Playwright headless Chromium hangs on page.goto on this machine. Visual checks are done through the Claude in Chrome extension instead, plus the dev-only `/preview` route that frames the page at 390 and 1024.
 - The Chrome tab used for automated checks reports document.hidden = true (its window is in the background). Animation frames do not run there, so GSAP and ScrollTrigger motion cannot be verified through it. Bring that window to the front, or check motion by hand.
+- Lottie (founder request 2026-09-10): `@lottiefiles/dotlottie-react` added. `components/LottieAccent.tsx` loads the player only when the block is near the viewport (IntersectionObserver plus a scroll bounds fallback), plays in view, pauses out of view, first frame only under reduced motion. `public/lottie/reported.json` is a hand-made placeholder (three pulsing signal dots). Replace it with a LottieFiles pick at the same path; `.lottie` files also work.
 - Subtle section textures added at founder request (2026-09-10): `components/SectionBackground.tsx` with `pattern-dots` (paper dots at 7% on ink sections) and `pattern-grid` (ink grid at 5% on paper sections), edge-masked by `pattern-fade`. Rebuilt in tokens after the MagicUI patterns on 21st.dev, no library. Every new section should include it and be `relative overflow-hidden` with its content wrapper `relative`.
 - Turbopack sometimes fails to pick up new Tailwind classes from a rewritten file. If a class is missing from the served CSS, restart `npm run dev -- -p 3002`.
 - Tailwind v4 has no named duration namespace, so `duration-fast` style classes do nothing. Use `duration-(--duration-fast)`, `duration-(--duration-base)`, `duration-(--duration-reveal)`. Fixed across all components 2026-09-10.
@@ -180,6 +181,7 @@ Progress: 6 / 13 steps done (P partly, 06 awaiting sign-off).
 | 2026-09-10 | 03 | ROI comparison built with content/roi.ts, RoiComparison, RoiRerank. Mounted after hero. Layout verified, motion pending a visible tab. |
 | 2026-09-10 | 02 | User asked for a visible right edge on the hero image. Bleed removed, shadow token deepened (0 24px 64px -8px rgba(2,6,16,0.7)). |
 | 2026-09-10 | 01 | Header: translucent blur on scroll, smaller CTA, and palette that follows the section beneath (ink or paper). Sections tagged with data-section-theme. |
+| 2026-09-10 | 07 | Testimonials carousel built natively with Lottie accent, sample data behind a flag. Verified at desktop. |
 | 2026-09-10 | 06 | Proof built and mounted with empty testimonials data and stub. |
 | 2026-09-10 | 04 | How it works rebuilt as three aligned columns after user feedback. Subtle dot and grid backgrounds added to hero, ROI, how it works, video. Dev server restarted to fix stale Tailwind scan. |
 | 2026-09-10 | 05 | Video section built with the founder-supplied mp4 served from public/video in dev, poster cut at 3.5s, placeholder vtt. Verified click-to-play wiring in Chrome. |

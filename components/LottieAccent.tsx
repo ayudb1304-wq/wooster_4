@@ -32,8 +32,8 @@ export function LottieAccent({ src, className = "", label }: Props) {
       { rootMargin: "200px 0px" },
     );
     io.observe(el);
-    // Fallback for environments where the observer is deferred: if the element
-    // is already within range on mount, load and play without waiting.
+    // Fallback for environments where the observer is deferred: a direct bounds
+    // check on mount and on scroll. Cheap, and covers already-in-view mounts.
     const check = () => {
       const r = el.getBoundingClientRect();
       const within = r.bottom > -200 && r.top < window.innerHeight + 200;
@@ -43,10 +43,10 @@ export function LottieAccent({ src, className = "", label }: Props) {
       }
     };
     check();
-    const timer = window.setTimeout(check, 1500);
+    window.addEventListener("scroll", check, { passive: true });
     return () => {
       io.disconnect();
-      window.clearTimeout(timer);
+      window.removeEventListener("scroll", check);
     };
   }, []);
 
