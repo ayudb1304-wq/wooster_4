@@ -20,12 +20,12 @@ Last updated: 2026-09-10 (afternoon)
 | 05 | Video | [x] | [ ] | [x] | n/a | Signed off implicitly. Open items: hosting move, real captions, the 90-second claim. 390 check pending. |
 | 06 | Proof | [x] | [ ] | [x] | n/a | Signed off implicitly. 390 check pending. |
 | 07 | Testimonials | [x] | [ ] | [x] | [ ] | Signed off implicitly. 390 and reduced-motion checks pending. |
-| 08 | Pricing | [~] | [ ] | [x] | n/a | Built and checked at desktop. Awaiting sign-off. |
-| 09 | Guarantee + FAQ | [ ] | [ ] | [ ] | n/a | |
+| 08 | Pricing | [x] | [ ] | [x] | n/a | Card layout signed off. 390 check pending. |
+| 09 | Guarantee + FAQ | [~] | [ ] | [x] | n/a | Built to the founder reference. Checked at desktop. Awaiting sign-off. |
 | 10 | Final CTA + footer + page assembly | [ ] | [ ] | [ ] | n/a | |
 | 11 | Hardening: analytics, schema, perf, a11y, metadata | [ ] | [ ] | [ ] | [ ] | |
 
-Progress: 8 / 13 steps done (P partly, 08 awaiting sign-off).
+Progress: 9 / 13 steps done (P partly, 09 awaiting sign-off).
 
 ## Detailed checklist
 
@@ -121,10 +121,10 @@ Progress: 8 / 13 steps done (P partly, 08 awaiting sign-off).
 - [~] Verification: desktop checked. Mobile check of guarantee and footnote proximity pending step 09
 
 ### 09. Guarantee + FAQ
-- [ ] `components/Guarantee.tsx` id `guarantee`, signal block with ink text, contrast confirmed
-- [ ] `components/Faq.tsx`: restyled Accordion, hairline rules, plus/minus glyph, 48px triggers, keyboard operable
-- [ ] FAQPage JSON-LD generated from the same data array
-- [ ] Verification: screenshots with one item open; JSON-LD validated
+- [x] `components/GuaranteeFaq.tsx` (single component, founder reference: one bordered rounded panel split in two). Left half id `guarantee` is the signal block with ink text (ink on signal is about 10:1). Small "Guarantee" label, H2, body
+- [x] Right half: shadcn/Base UI Accordion restyled in `components/ui/accordion.tsx` to tokens: hairline rules, question body 600 on one line (the Base UI header is an h3, global heading styles reset), rotating chevron per the reference instead of plus/minus, 48px+ triggers, 240ms height transition, keyboard operable. First item open by default
+- [x] FAQPage JSON-LD generated from `content/faq.ts`, the same array the accordion renders
+- [~] Verification: desktop checked with one item open and toggling confirmed. JSON-LD present in the HTML; run it through the Schema.org validator in step 11. 390 check pending
 
 ### 10. Final CTA + footer + page assembly
 - [ ] `components/FinalCta.tsx`: display1 H2 cols 1 to 9, primary button only
@@ -182,6 +182,7 @@ Progress: 8 / 13 steps done (P partly, 08 awaiting sign-off).
 | 2026-09-10 | 02 | User asked for a visible right edge on the hero image. Bleed removed, shadow token deepened (0 24px 64px -8px rgba(2,6,16,0.7)). |
 | 2026-09-10 | 01 | Header: translucent blur on scroll, smaller CTA, and palette that follows the section beneath (ink or paper). Sections tagged with data-section-theme. |
 | 2026-09-10 | 08 | Pricing built and mounted. |
+| 2026-09-10 | 09 | Guarantee + FAQ built as a split panel per the founder screenshot, accordion retokened, FAQ JSON-LD. Questions fixed to one line. |
 | 2026-09-10 | 08 | Pricing rebuilt as a card per the founder screenshot: inner check list, price beside a pill CTA. |
 | 2026-09-10 | 07/04 | Founder supplied two 21st.dev components. Circular Testimonials replaces the Embla carousel; Elastic Gallery replaces the three-column screenshots in How it works. Both retokened, Framer and react-icons swapped for CSS and lucide. |
 | 2026-09-10 | 07 | Testimonials carousel built natively with Lottie accent, sample data behind a flag. Verified at desktop. |

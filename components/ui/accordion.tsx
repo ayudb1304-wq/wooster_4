@@ -31,7 +31,9 @@ function AccordionItem({ className, ...props }: AccordionPrimitive.Item.Props) {
 
 function AccordionTrigger({ className, children, ...props }: AccordionPrimitive.Trigger.Props) {
   return (
-    <AccordionPrimitive.Header className="flex">
+    // Base UI renders the header as an h3; reset the global heading styles so the
+    // question stays in body type on a single line.
+    <AccordionPrimitive.Header className="flex max-w-none font-body [font-variation-settings:normal]">
       <AccordionPrimitive.Trigger
         data-slot="accordion-trigger"
         className={cn(
