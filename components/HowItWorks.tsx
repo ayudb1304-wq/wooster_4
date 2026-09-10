@@ -39,14 +39,14 @@ export function HowItWorks() {
       <div className="mx-auto max-w-[1440px] px-gutter py-section-y">
         <h2 className="text-display2">Three steps. No guesswork.</h2>
 
-        <ol className="mt-12 grid grid-cols-1 gap-x-8 gap-y-12 lg:mt-16 lg:grid-cols-12 lg:grid-rows-2 lg:gap-y-16">
+        <ol className="mt-12 grid grid-cols-1 gap-x-8 gap-y-12 lg:mt-16 lg:grid-cols-12 lg:grid-rows-[auto_auto] lg:gap-y-16">
           {steps.map((step, i) => (
             <li
               key={step.n}
               className={
                 i === 0
-                  ? "flex flex-col lg:col-span-5 lg:row-span-2"
-                  : "grid grid-cols-1 gap-6 md:grid-cols-[minmax(0,2fr)_minmax(0,3fr)] md:items-end lg:col-span-7 lg:col-start-6"
+                  ? "lg:col-span-5 lg:row-span-2"
+                  : "grid grid-cols-1 gap-6 md:grid-cols-[minmax(0,2fr)_minmax(0,3fr)] md:items-start lg:col-span-7 lg:col-start-6"
               }
             >
               <div>
@@ -59,7 +59,7 @@ export function HowItWorks() {
                 </h3>
                 <p className="mt-1 max-w-[40ch] text-body text-ink-muted">{step.text}</p>
               </div>
-              <div className={i === 0 ? "mt-8 flex flex-1 items-end" : ""}>
+              <div className={i === 0 ? "mt-8" : ""}>
                 <Image
                   src={step.src}
                   alt={step.alt}
